@@ -1,425 +1,587 @@
-/*******************************************************************************
-Slate Theme for GitHub Pages
-by Jason Costello, @jsncostello
-*******************************************************************************/
 
-@import url(github-light.css);
+Skip to content
+This repository  
+Search
+Pull requests
+Issues
+Gist
+ @imwiththou
+ Unwatch 1
+  Star 1
+  Fork 0 imwiththou/imwiththou.github.com
+Branch: master  imwiththou.github.com/css/style.css
+@imwiththouimwiththou on May 3, 2014 Update style.css
+1 contributor
+RawBlameHistory     571 lines (468 sloc)  9.39 KB
+/***************** PSEUDO & GENERAl CLASSES ***************/
 
-/*******************************************************************************
-MeyerWeb Reset
-*******************************************************************************/
-
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed,
-figure, figcaption, footer, header, hgroup,
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font: inherit;
-  vertical-align: baseline;
+#main-container{ overflow: hidden; }
+body{  -webkit-font-smoothing: antialiased; }
+.no-last{ float: left !important; }
+input{ -webkit-appearance: none; }
+.page-header{ text-align: center; margin-bottom: 44px;}
+.page-header .icon{ font-size: 24px; }
+.page-header h4{ margin-top: 11px; }
+.page-header .hr{ background-color: #212121; margin-top: 44px; margin-bottom: 44px; }
+.callout-wrapper{ background-color: #222; padding: 15px; }
+.callout{ background-color: #222; padding: 25px; border: 2px solid #fff; overflow: hidden; }
+.callout h5{ margin-bottom: 11px; overflow: hidden; }
+.callout p{ margin-bottom: 0px; }
+.callout .icon{ font-size: 72px; }
+#client-divider{
+	background: url('../img/previous/t1.jpg');
+	background-size: cover;
+	background-attachment: fixed;
+	position: relative;
 }
 
-/* HTML5 display-role reset for older browsers */
-article, aside, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section {
-  display: block;
+#client-divider:before{ position: absolute; width: 100%; height: 100%; background-color: rgba(0,0,0,0.6); content:''; }
+#client-divider .page-header{ margin-top: 88px; }
+#client-divider .page-header .hr{ background-color: #fff; }
+#client-divider img{ max-width: 80%; margin-bottom: 88px; }
+
+
+
+/** SPACING **/
+
+.pad-large{
+	padding-top: 88px;
+	padding-bottom: 88px;
 }
 
-ol, ul {
-  list-style: none;
+.pad-small{
+	padding-top: 44px;
+	padding-bottom: 44px;
 }
 
-table {
-  border-collapse: collapse;
-  border-spacing: 0;
+.pad-bottom{
+	margin-bottom: 88px;
 }
 
-/*******************************************************************************
-Theme Styles
-*******************************************************************************/
+/** TYPO **/
 
-body {
-  box-sizing: border-box;
-  color:#373737;
-  background: #212121;
-  font-size: 16px;
-  font-family: 'Myriad Pro', Calibri, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  -webkit-font-smoothing: antialiased;
+.text-white{
+	color: #fff;
+	font-family: 'PT Sans', sans-serif;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  margin: 10px 0;
-  font-weight: 700;
-  color:#222222;
-  font-family: 'Lucida Grande', 'Calibri', Helvetica, Arial, sans-serif;
-  letter-spacing: -1px;
+.hr{
+	margin: 0px auto;
+	margin-top: 22px;
+	margin-bottom: 22px;
+	height: 2px;
+	background-color: #fff;
 }
 
-h1 {
-  font-size: 36px;
-  font-weight: 700;
+/** BUTTONS **/
+
+.btn{
+	padding: 15px 25px 15px 25px;
+	border: 7px double #222;
+	background-color: #222;
+	cursor: pointer;
+	font-family: 'PT Sans', sans-serif;	
+	font-size: 12px;
+	text-align: center;
+	display: inline-block;
+	overflow: hidden;
 }
 
-h2 {
-  padding-bottom: 10px;
-  font-size: 32px;
-  background: url('../images/bg_hr.png') repeat-x bottom;
+.twitter-bg{
+	background-color: #009ad6;
+	border-color: #009ad6;
 }
 
-h3 {
-  font-size: 24px;
+.twitter-bg:hover h6{
+	color: #009ad6 !important;
 }
 
-h4 {
-  font-size: 21px;
+.twitter-bg:hover .icon{
+	color: #009ad6 !important;
 }
 
-h5 {
-  font-size: 18px;
+.btn h6{
+	letter-spacing: 2px;
+	margin-right: -2px;
+	float: right;
+	color:#fff;
 }
 
-h6 {
-  font-size: 16px;
+.btn .icon{
+	display: inline;
+	float: left;
+	margin-right: 11px;
+	font-size: 12px;
+	color: #fff;
 }
 
-p {
-  margin: 10px 0 15px 0;
+.btn:hover{
+	background-color: #fff;
 }
 
-footer p {
-  color: #f2f2f2;
+.btn:hover h6{ color: #222; }
+.btn:hover .icon{ color: #222; }
+
+/********************* NAVIGATION ********************/
+
+#navigation{
+	position: fixed;
+	top: -80px;
+	width: 100%;
+	/*-webkit-filter: blur(5px);
+	filter: blur(5px);*/
+	background-color: rgba(255,255,255,0.9);
+	max-height: 80px;
+	min-height: 80px;
+	z-index: 200;
+	transition: all .2s ease;
+	-webkit-transition: all .2s ease;
+	-moz-transition: all .2s ease;
+	overflow: hidden;
 }
 
-a {
-  text-decoration: none;
-  color: #007edf;
-  text-shadow: none;
-
-  transition: color 0.5s ease;
-  transition: text-shadow 0.5s ease;
-  -webkit-transition: color 0.5s ease;
-  -webkit-transition: text-shadow 0.5s ease;
-  -moz-transition: color 0.5s ease;
-  -moz-transition: text-shadow 0.5s ease;
-  -o-transition: color 0.5s ease;
-  -o-transition: text-shadow 0.5s ease;
-  -ms-transition: color 0.5s ease;
-  -ms-transition: text-shadow 0.5s ease;
+#mobile-toggle{
+	position: absolute;
+	z-index: 200;
+	right: 44px;
+	top: 30px;
+	font-size: 25px;
+	cursor: pointer;
+	display: none;
 }
 
-a:hover, a:focus {text-decoration: underline;}
-
-footer a {
-  color: #F2F2F2;
-  text-decoration: underline;
+.mobile-nav-open{
+	max-height: 500px !important;
 }
 
-em {
-  font-style: italic;
+.show-nav{
+	top: 0px !important;
 }
 
-strong {
-  font-weight: bold;
+#logo{
+	padding-top: 21px;
+	overflow: hidden;
 }
 
-img {
-  position: relative;
-  margin: 0 auto;
-  max-width: 739px;
-  padding: 5px;
-  margin: 10px 0 10px 0;
-  border: 1px solid #ebebeb;
-
-  box-shadow: 0 0 5px #ebebeb;
-  -webkit-box-shadow: 0 0 5px #ebebeb;
-  -moz-box-shadow: 0 0 5px #ebebeb;
-  -o-box-shadow: 0 0 5px #ebebeb;
-  -ms-box-shadow: 0 0 5px #ebebeb;
+#logo .icon{
+	color: #222;
+	font-size: 40px;
+	float: left;
 }
 
-p img {
-  display: inline;
-  margin: 0;
-  padding: 0;
-  vertical-align: middle;
-  text-align: center;
-  border: none;
+#logo h5{
+	float: left;
+	padding-top: 8px;
+	margin-left: 11px;
 }
 
-pre, code {
-  width: 100%;
-  color: #222;
-  background-color: #fff;
-
-  font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
-  font-size: 14px;
-
-  border-radius: 2px;
-  -moz-border-radius: 2px;
-  -webkit-border-radius: 2px;
+#menu{
+	overflow: hidden;
+	margin-bottom: 0px;
+	list-style: none;
+	float: right;
+	padding-top: 33px;
 }
 
-pre {
-  width: 100%;
-  padding: 10px;
-  box-shadow: 0 0 10px rgba(0,0,0,.1);
-  overflow: auto;
+#menu h6{
+	font-size: 12px;
+	letter-spacing: 3px;
+	margin-right: -3px;
 }
 
-code {
-  padding: 3px;
-  margin: 0 3px;
-  box-shadow: 0 0 10px rgba(0,0,0,.1);
+#menu li{
+	margin-right: 22px;
+	float: left;
 }
 
-pre code {
-  display: block;
-  box-shadow: none;
+#menu li:last-child{
+	margin-right: 0px !important;
 }
 
-blockquote {
-  color: #666;
-  margin-bottom: 20px;
-  padding: 0 0 0 20px;
-  border-left: 3px solid #bbb;
+/********************* HOME ********************/
+
+#home{
+	overflow: hidden;
 }
 
-
-ul, ol, dl {
-  margin-bottom: 15px
+#home-slider{
+	position: relative;
 }
 
-ul {
-  list-style-position: inside;
-  list-style: disc;
-  padding-left: 20px;
+#home-slider .display-h{
+	font-size: 65px;
 }
 
-ol {
-  list-style-position: inside;
-  list-style: decimal;
-  padding-left: 20px;
+#home-slider .slides li{
+	background-size: cover !important;
+	background-position: center;
+	background-position-y: -20px;
+	background-attachment: fixed !important;
+	
 }
 
-dl dt {
-  font-weight: bold;
+.home-shrink .hr{
+	margin-bottom: 44px;
 }
 
-dl dd {
-  padding-left: 20px;
-  font-style: italic;
+.home-shrink .icon{
+	color: #fff;
+	font-size: 60px;
 }
 
-dl p {
-  padding-left: 20px;
-  font-style: italic;
+.home-shrink .display-h{
+	-webkit-transition: all .1s ease;
+	letter-spacing: 20px;
+	margin-right: -20px;
 }
 
-hr {
-  height: 1px;
-  margin-bottom: 5px;
-  border: none;
-  background: url('../images/bg_hr.png') repeat-x center;
+/********************* ABOUT ********************/
+
+#about-text{
+	text-align: left;
+	margin-bottom: 44px;
+	font-family: 'PT Sans', sans-serif;
+	font-size: 1.5em;
 }
 
-table {
-  border: 1px solid #373737;
-  margin-bottom: 20px;
-  text-align: left;
- }
-
-th {
-  font-family: 'Lucida Grande', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  padding: 10px;
-  background: #373737;
-  color: #fff;
- }
-
-td {
-  padding: 10px;
-  border: 1px solid #373737;
- }
-
-form {
-  background: #f2f2f2;
-  padding: 20px;
-}
-
-/*******************************************************************************
-Full-Width Styles
-*******************************************************************************/
-
-.outer {
-  width: 100%;
-}
-
-.inner {
-  position: relative;
-  max-width: 640px;
-  padding: 20px 10px;
-  margin: 0 auto;
-}
-
-#forkme_banner {
-  display: block;
-  position: absolute;
-  top:0;
-  right: 10px;
-  z-index: 10;
-  padding: 10px 50px 10px 10px;
-  color: #fff;
-  background: url('../images/blacktocat.png') #0090ff no-repeat 95% 50%;
-  font-weight: 700;
-  box-shadow: 0 0 10px rgba(0,0,0,.5);
-  border-bottom-left-radius: 2px;
-  border-bottom-right-radius: 2px;
-}
-
-#header_wrap {
-  background: #212121;
-  background: -moz-linear-gradient(top, #373737, #212121);
-  background: -webkit-linear-gradient(top, #373737, #212121);
-  background: -ms-linear-gradient(top, #373737, #212121);
-  background: -o-linear-gradient(top, #373737, #212121);
-  background: linear-gradient(top, #373737, #212121);
-}
-
-#header_wrap .inner {
-  padding: 50px 10px 30px 10px;
-}
-
-#project_title {
-  margin: 0;
-  color: #fff;
-  font-size: 42px;
-  font-weight: 700;
-  text-shadow: #111 0px 0px 10px;
-}
-
-#project_tagline {
-  color: #fff;
-  font-size: 24px;
-  font-weight: 300;
-  background: none;
-  text-shadow: #111 0px 0px 10px;
-}
-
-#downloads {
-  position: absolute;
-  width: 210px;
-  z-index: 10;
-  bottom: -40px;
-  right: 0;
-  height: 70px;
-  background: url('../images/icon_download.png') no-repeat 0% 90%;
-}
-
-.zip_download_link {
-  display: block;
-  float: right;
-  width: 90px;
-  height:70px;
-  text-indent: -5000px;
-  overflow: hidden;
-  background: url(../images/sprite_download.png) no-repeat bottom left;
-}
-
-.tar_download_link {
-  display: block;
-  float: right;
-  width: 90px;
-  height:70px;
-  text-indent: -5000px;
-  overflow: hidden;
-  background: url(../images/sprite_download.png) no-repeat bottom right;
-  margin-left: 10px;
-}
-
-.zip_download_link:hover {
-  background: url(../images/sprite_download.png) no-repeat top left;
-}
-
-.tar_download_link:hover {
-  background: url(../images/sprite_download.png) no-repeat top right;
-}
-
-#main_content_wrap {
-  background: #f2f2f2;
-  border-top: 1px solid #111;
-  border-bottom: 1px solid #111;
-}
-
-#main_content {
-  padding-top: 40px;
-}
-
-#footer_wrap {
-  background: #212121;
+#about .btn{
+	margin-right: 11px;
 }
 
 
+/********************* INTERESTS ********************/
 
-/*******************************************************************************
-Small Device Styles
-*******************************************************************************/
+#services{
+	background-color: #F7E7CE;
+}
 
-@media screen and (max-width: 480px) {
-  body {
-    font-size:14px;
-  }
+#services .callout-wrapper{ margin-top: 44px; }
 
-  #downloads {
-    display: none;
-  }
+.service{
+	text-align: center;
+	font-family: 'PT Sans', sans-serif;
+	padding-top: 22px;
+	padding-bottom: 22px;
+	transition: all .2s ease;
+	-webkit-transition: all .2s ease;
+	-moz-transition: all .2s ease;
+}
 
-  .inner {
-    min-width: 320px;
-    max-width: 480px;
-  }
+.service-diamond-holder:hover .icon{
+	top: 35px;
+}
 
-  #project_title {
-  font-size: 32px;
-  }
+.service-hr{
+	margin: 0px auto;
+	background-color: #222;
+	position: relative;
+	top: 108px;
+}
 
-  h1 {
-    font-size: 28px;
-  }
+.service p{
+	margin-bottom: 0px;
+	margin-top: 22px;
+}
 
-  h2 {
-    font-size: 24px;
-  }
+.service-diamond-holder{
+	width: 170px;
+	height: 170px;
+	margin: 0px auto;
+	margin-bottom: 22px;
+}
 
-  h3 {
-    font-size: 21px;
-  }
-
-  h4 {
-    font-size: 18px;
-  }
-
-  h5 {
-    font-size: 14px;
-  }
-
-  h6 {
-    font-size: 12px;
-  }
-
-  code, pre {
-    min-width: 320px;
-    max-width: 480px;
-    font-size: 11px;
-  }
+.diamond-border{  
+	width: 90%;
+	height: 90%;
+	border: 2px solid #222;
+	top: 6px;
+	left: 6px;
+	position: relative;
+	border-radius:10px;
 
 }
+
+.service-diamond{
+	width: 120px;
+	height: 120px;
+	text-align: center;
+	margin: 0px auto;
+	transform: rotate(45deg);
+	-ms-transform: rotate(45deg); /* IE 9 */
+	-webkit-transform: rotate(45deg); /* Safari and Chrome */
+	position: relative;
+	top: 25px;
+	border-radius:10px;
+}
+
+.service-diamond .icon{
+	display: inline-block;
+	font-size: 25px;
+	position: relative;
+	top: 41px;
+	color: #222;
+	transition: all .2s ease;
+	-webkit-transition: all .2s ease;
+	-moz-transition: all .2s ease;
+	transform: rotate(-45deg);
+	-ms-transform: rotate(-45deg); /* IE 9 */
+	-webkit-transform: rotate(-45deg); /* Safari and Chrome */
+}
+
+/********************* TESTIMONIALS ********************/
+
+#testimonials{
+	padding-top: 88px;
+	padding-bottom: 88px;
+	background: url('../img/Blur/alt4.jpg');
+	color: #fff;
+	background-size: cover;
+	background-attachment: fixed;
+	font-family: 'PT Sans', sans-serif;
+	}
+
+#testimonials-slider{
+	position: relative;
+	font-size: 1.4em;
+}
+
+#testimonials-slider .flex-direction-nav a{
+	color: #fff;
+	top: 14%;
+}
+
+#testimonials-slider .flex-direction-nav .flex-prev { left: -99px; }
+#testimonials-slider .flex-direction-nav .flex-next { right: -99px; text-align: right; }
+
+#testimonials-slider h6{
+	color: #fff;
+	font-size: 0.6em;
+}
+
+#testimonials-slider p{
+	margin-bottom: 44px;
+}
+
+#testimonials .hr{
+	background-color: #fff;
+}
+
+/********************* WORKS ********************/
+
+#work{
+	padding-top: 88px;
+}
+
+.last-row{
+	padding-bottom: 146px;
+	margin-bottom: 88px;
+}
+
+.mid-row{
+	position: relative;
+}
+
+.mid-row .work-item-wrapper{
+	left: 166px;
+}
+
+.work-item-wrapper{
+	width: 310px;
+	height: 310px;
+	position: relative;
+	margin-bottom: -147px;
+}
+
+.work-item{
+	width: 220px;
+	height: 220px;
+	border-radius:10px;
+	overflow: hidden;
+	position: relative;
+	background-color: #222;
+	transform: rotate(45deg);
+	-ms-transform: rotate(45deg); /* for IE 9, damn out of historical IE. */
+	-webkit-transform: rotate(45deg); /* Safari and Chrome */
+	margin: 0px auto;
+	cursor: pointer;
+	top: 45px;
+	padding: 0px;
+	transition: all .2s ease;
+	-webkit-transition: all .2s ease;
+	-moz-transition: all .2s ease;
+}
+
+.work-img-holder{
+	position: absolute;
+	top:-70px;
+	left: -44px;
+	height: 350px;
+	width: 350px;
+	transform: rotate(-45deg);
+	-ms-transform: rotate(-45deg); /* IE 9 */
+	-webkit-transform: rotate(-45deg); /* Safari and Chrome */
+}
+
+.work-img-holder img{
+	height: 100%;
+	max-width: 150%;
+}
+
+.work-overlay{
+	width:100%;
+	height: 100%;
+	background-color: rgba(34,34,34,0.9);
+	position: relative;
+	padding-top: 60px;
+	transition: all .2s ease;
+	-webkit-transition: all .2s ease;
+	-moz-transition: all .2s ease;
+	opacity: 0;
+	border-radius:10px;
+	color: #fff;
+}
+
+.overlay-content{
+	transform: rotate(-45deg);
+	-ms-transform: rotate(-45deg);
+	-webkit-transform: rotate(-45deg);
+}
+
+.show{
+	opacity: 1 !important;
+}
+
+.work-item:hover .work-overlay{
+	opacity: 1;
+}
+
+.work-item:hover{
+	padding: 10px;
+}
+
+.project-wrapper{
+	opacity: 0;
+	transition: all .3s ease;
+	-webkit-transition: all .3s ease;
+	-moz-transition: all .3s ease;
+}
+
+.fade-project{
+	opacity: 1;
+}
+
+.project{
+	background-color: #eed;
+	margin-top: 0px;
+	max-height: 0px;
+	overflow: hidden;
+	transition: all .7s ease;
+	-webkit-transition: all .7s ease;
+	-moz-transition: all .7s ease;
+}
+
+.open-project{
+	max-height: 1300px;
+	margin-top: 88px;
+	padding-top: 88px;
+	padding-bottom: 88px;
+}
+
+.project-details .close-project{
+	font-size: 28px;
+	cursor: pointer;
+	margin-right: 22px;
+}
+
+.project-details .hr{
+	background-color: #222;
+	margin:0px;
+	margin-bottom: 22px;
+	margin-top: 22px;
+}
+
+.project-details p{
+	columns:100px 2;
+	-webkit-columns:100px 2; /* Safari and Chrome */
+	-moz-columns:100px 2; /* Firefox */
+	margin-bottom: 44px;
+	text-align: left;
+}
+
+.project-slideshow{
+	margin-top: 44px;
+}
+
+
+.project-slideshow .slides li{
+	height: 600px;
+	width: 100%;
+	overflow: hidden;
+	background-size: cover !important;
+	background-position: center !important;
+}
+
+/********************* CONTACT ********************/
+
+#contact{
+	position: relative;
+}
+
+#contact-content{
+	background-color: rgba(247, 231, 206 ,0.9);
+	position: relative;
+	z-index: 1;
+	padding-top: 88px;
+	padding-bottom: 88px;
+	transition: all .5s ease;
+	-webkit-transition: all .5s ease;
+	-moz-transition: all .5s ease;
+	opacity: 1;
+}
+
+.fade-out{
+	opacity: 0.2 !important;
+}
+
+
+#contact h6{
+	letter-spacing: 3px;
+	margin-right: -3px;
+
+}
+
+#contact iframe{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	border: none;
+	z-index: 0;
+}
+
+#contact .service-diamond{
+	background-color: rgba(0,0,0,0);
+}
+
+#contact .service-row{
+	margin-bottom: 22px;
+}
+
+.social-row{
+	margin-top: 44px;
+	margin-bottom: 88px;
+}
+
+#map-diamond{
+	cursor: pointer;
+}
+
+#copy-text{
+	font-family: 'PT Sans', sans-serif;
+	letter-spacing: 3px;
+	margin-right: 3px;
+	text-transform: uppercase;
+	font-size: 12px;
+	opacity: 0.7;
+}
+Status API Training Shop Blog About Pricing
+© 2015 GitHub, Inc. Terms Privacy Security Contact Help
