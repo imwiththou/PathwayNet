@@ -5,3 +5,6 @@ Thumbs.db
 
 .rbenv-version
 .rvmrc
+
+# compiled Python files
+sbol/*.pyc
