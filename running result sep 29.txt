@@ -1,0 +1,15 @@
+GFP_original=0.000343836803316
+
+GFP_1=0.000343836820345 (increased)
+
+GFP_2=0.000343836820351(not much changed comparing to last result), 
+LasR=4,651.18198281
+
+--
+
+unstable inducer:
+
+(comparing to output from last run)
+
+GFP_3=0.000343835842982 (increased), LasR=4,651.18198281
+
