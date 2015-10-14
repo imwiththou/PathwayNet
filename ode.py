@@ -1,9 +1,9 @@
 import sys
- 
+
 def rk4(func, x, y, step, xmax):
     """
     Integrates y'=f(x,y) using 4th step-order Runge-Kutta.
-     
+    
     @param func: a differential equation
     @type func: list
     @param x: initial value of x-axis, which is usually starting time
@@ -24,7 +24,7 @@ def rk4(func, x, y, step, xmax):
         x = x + step
         y = y + step*(f1+2.0*f2+2.0*f3+f4)/6.0
         yield [x, y]
- 
+
 def boundary_checker(y, boundary, type):
     for k in boundary.keys():
         if y[int(k)] < boundary[k][0] and type == 'lower':
@@ -32,13 +32,13 @@ def boundary_checker(y, boundary, type):
         if y[int(k)] > boundary[k][0] and type == 'higher':
             y[int(k)] = boundary[k][1]
     return y
- 
+
 def multirk4(funcs, x0, y0, step, xmax, 
              lower_bound=None, upper_bound=None):
     """
     Integrates a system of ODEs, y' = f(x, y), using fourth
     order Runge-Kutta method.
- 
+
     @param funcs: system of differential equations
     @type funcs: list
     @param x0: initial value of x-axis, which is usually starting time
