@@ -63,7 +63,7 @@ y[11] = 0.0    # [C04732]
 y[12] = 0.0    # [C04332]
 y[13] = 0.0    # [riboflavin]
 y[14] = 0.0    # [FMN]
- 
+
 def ribA(t, y):
     production = ribA_vmax
     degradation = ribA_gamma * y[0]
