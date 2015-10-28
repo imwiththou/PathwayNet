@@ -33,11 +33,11 @@ y=range(3)
 y[0]=1e-06 #glucose concentration
 y[1]=3e-06 #hexokinase concentration
 y[2]=0 #glucose-hexokinase complex concentration
-k1=3e-07
-k2=1e-06
+k1=3e-04
+k2=1e-04
 
 t0 = 0.0
-tmax = 1800.0
+tmax = 18000.0
 dt = 1
 outfile = 'Complex_G_H_new.csv'
 f = open(outfile, 'w')
