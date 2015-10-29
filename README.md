@@ -1,4 +1,4 @@
-# PathwayNet
+# PathwayNet-Modelling branch
 
 PathwayNet is a project based on Python and Bioinformatics. It tries to build up mathematic modes on simulating pathways of amino acid synthesis in *E. coli*. The simulation uses ODE numerical approach. By adjusting parameter of enzyme concentration and compounds' distrubution in reaction network, a higher engineering probiotics efficiency might be achieved. 
 
