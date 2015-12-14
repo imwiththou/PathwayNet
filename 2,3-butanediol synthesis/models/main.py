@@ -104,7 +104,7 @@ circuitODE[6] = G3P
 #iteration setup
 
 t0 = 0.0
-tmax = 2000.0
+tmax = 20000.0
 dt = 0.1
 outfile = 'RouteA.csv'
 f = open(outfile, 'w')
