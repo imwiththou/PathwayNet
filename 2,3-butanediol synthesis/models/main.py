@@ -1,5 +1,6 @@
 import ode
 #The whole pathways networks related with 2,3-butanediol synthesis can be divided into four dependent paths
+#-----------------------------------------------------
 #RouteA: Glu-GA3P-DHAP-G3P
 
 #enzyme setup
@@ -32,9 +33,9 @@ G3P_gamma =
 
 y = range(7)
 #[GluGA3P]
-y[1] =
+y[1] = 
 #[GA3PDHAP]
-y[2] =
+y[2] = 
 #[DHAPG3P]
 y[3] = 
 #[Glu]
@@ -50,43 +51,43 @@ y[7] = 0.0
 
 def GluGA3P(t, y):
 	production = GluGA3P_vmax
-	degradation = GluGA3P_gamma * [Glu]
+	degradation = GluGA3P_gamma * y[4]
 	usage = 0
 	return production - degradation - usage
 
 def GA3PDHAP(t, y):
 	production = GA3PDHAP_vmax
-	degradation = GA3PDHAP_gamma * [GA3P]
+	degradation = GA3PDHAP_gamma * y[5]
 	usage = 0
 	return production - degradation - usage
 	
 def DHAPG3P(t, y):
 	production = DHAPG3P_vmax
-	degradation = DHAPG3P_gamma * [DHAP]
+	degradation = DHAPG3P_gamma * y[6]
 	usage = 0
 	return production - degradation - usage
 	
 def Glu(t, y):
 	production = Glu_vmax
-	degradation = Glu_gamma * [Glu]
-	usage = ([Glu] * [GluGA3P] * GluGA3P_rate) / ([Glu] + GluGA3P_km)
+	degradation = Glu_gamma * y[4]
+	usage = (y[4] * y[1] * GluGA3P_rate) / (y[4] + GluGA3P_km)
 	return production - degradation - usage
 	
 def GA3P(t, y):
-	production = ([Glu] * [GluGA3P] * GluGA3P_rate) / ([Glu] + GluGA3P_km)
-	degradation = GA3P_gamma * [GA3P]
-	usage = ([GA3P] * [GA3PDHAP] * GA3PDHAP_rate) / ([GA3P] +GA3PDHAP_km)
+	production = (y[4] * y[1] * GluGA3P_rate) / (y[4] + GluGA3P_km)
+	degradation = GA3P_gamma * y[5]
+	usage = (y[5] * y[2] * GA3PDHAP_rate) / (y[5] +GA3PDHAP_km)
 	return production - degradation - usage
 	
 def DHAP(t, y):
-	production = ([GA3P] * [GA3PDHAP] * GA3PDHAP_rate) / ([GA3P] +GA3PDHAP_km)
-	degradation = DHAP_gamma * [DHAP]
-	usage = ([DHAP] * [DHAPG3P] * DHAPG3P_rate) / ([DHAP]+DHAPG3P_km)
+	production = (y[5] * y[2] * GA3PDHAP_rate) / (y[5] +GA3PDHAP_km)
+	degradation = DHAP_gamma * y[6]
+	usage = (y[6] * y[3] * DHAPG3P_rate) / (y[6]+DHAPG3P_km)
 	return production - degradation - usage	
 
 def G3P(t, y):
-	production = ([DHAP] * [DHAPG3P] * DHAPG3P_rate) / ([DHAP]+DHAPG3P_km)
-	degradation = G3P_gamma * [G3P]
+	production = (y[6] * y[3] * DHAPG3P_rate) / (y[6]+DHAPG3P_km)
+	degradation = G3P_gamma * y[7]
 	usage = 0.0
 	return production - degradation - usage
 	
@@ -100,7 +101,7 @@ circuitODE[5] = GA3P
 circuitODE[6] = DHAP
 circuitODE[7] = G3P
 
-#iteration section
+#iteration setup
 
 t0 = 0.0
 tmax = 2000.0
@@ -113,12 +114,14 @@ for x in ode.multirk4(circuitODE, t0, y, dt, tmax):
     f.write(','.join([str(item) for item in x]) + '\n')
 f.close()
 
-
+#-----------------------------------------------------
 #RouteB:Glu-GA3P-Pv-alphaAL-DA-AT-BDO
 
 
+#-----------------------------------------------------
 #RouteC:Glu-GA3P-Pv-AA-AT-BDO
 
 
+#-----------------------------------------------------
 #RouteD:Glu-GA3P-Pv-AA-ACT-ETH
 
