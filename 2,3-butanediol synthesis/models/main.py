@@ -33,73 +33,73 @@ G3P_gamma = 0.0
 
 y = range(7)
 #[GluGA3P]
-y[1] = 4.06e-05
+y[0] = 4.06e-05
 #[GA3PDHAP]
-y[2] = 1.5e-06
+y[1] = 1.5e-06
 #[DHAPG3P]
-y[3] = 0.05
+y[2] = 0.05
 #[Glu]
-y[4] = 1e-06
+y[3] = 1e-06
 #[GA3P]
-y[5] = 0.0
+y[4] = 0.0
 #[DHAP]
-y[6] = 0.0
+y[5] = 0.0
 #[G3P]
-y[7] = 0.0
+y[6] = 0.0
 
 #ode individual definition
 
 def GluGA3P(t, y):
 	production = GluGA3P_vmax
-	degradation = GluGA3P_gamma * y[4]
+	degradation = GluGA3P_gamma * y[3]
 	usage = 0
 	return production - degradation - usage
 
 def GA3PDHAP(t, y):
 	production = GA3PDHAP_vmax
-	degradation = GA3PDHAP_gamma * y[5]
+	degradation = GA3PDHAP_gamma * y[4]
 	usage = 0
 	return production - degradation - usage
 	
 def DHAPG3P(t, y):
 	production = DHAPG3P_vmax
-	degradation = DHAPG3P_gamma * y[6]
+	degradation = DHAPG3P_gamma * y[5]
 	usage = 0
 	return production - degradation - usage
 	
 def Glu(t, y):
 	production = Glu_vmax
-	degradation = Glu_gamma * y[4]
-	usage = (y[4] * y[1] * GluGA3P_rate) / (y[4] + GluGA3P_km)
+	degradation = Glu_gamma * y[3]
+	usage = (y[3] * y[0] * GluGA3P_rate) / (y[3] + GluGA3P_km)
 	return production - degradation - usage
 	
 def GA3P(t, y):
-	production = (y[4] * y[1] * GluGA3P_rate) / (y[4] + GluGA3P_km)
-	degradation = GA3P_gamma * y[5]
-	usage = (y[5] * y[2] * GA3PDHAP_rate) / (y[5] +GA3PDHAP_km)
+	production = (y[3] * y[0] * GluGA3P_rate) / (y[3] + GluGA3P_km)
+	degradation = GA3P_gamma * y[4]
+	usage = (y[4] * y[1] * GA3PDHAP_rate) / (y[4] +GA3PDHAP_km)
 	return production - degradation - usage
 	
 def DHAP(t, y):
-	production = (y[5] * y[2] * GA3PDHAP_rate) / (y[5] +GA3PDHAP_km)
-	degradation = DHAP_gamma * y[6]
-	usage = (y[6] * y[3] * DHAPG3P_rate) / (y[6]+DHAPG3P_km)
+	production = (y[4] * y[1] * GA3PDHAP_rate) / (y[4] +GA3PDHAP_km)
+	degradation = DHAP_gamma * y[5]
+	usage = (y[5] * y[2] * DHAPG3P_rate) / (y[5]+DHAPG3P_km)
 	return production - degradation - usage	
 
 def G3P(t, y):
-	production = (y[6] * y[3] * DHAPG3P_rate) / (y[6]+DHAPG3P_km)
-	degradation = G3P_gamma * y[7]
+	production = (y[5] * y[2] * DHAPG3P_rate) / (y[5]+DHAPG3P_km)
+	degradation = G3P_gamma * y[6]
 	usage = 0.0
 	return production - degradation - usage
 	
 #circuit ODE
 circuitODE = range(7)
-circuitODE[1] = GluGA3P
-circuitODE[2] = GA3PDHAP
-circuitODE[3] = DHAPG3P
-circuitODE[4] = Glu
-circuitODE[5] = GA3P
-circuitODE[6] = DHAP
-circuitODE[7] = G3P
+circuitODE[0] = GluGA3P
+circuitODE[1] = GA3PDHAP
+circuitODE[2] = DHAPG3P
+circuitODE[3] = Glu
+circuitODE[4] = GA3P
+circuitODE[5] = DHAP
+circuitODE[6] = G3P
 
 #iteration setup
 
