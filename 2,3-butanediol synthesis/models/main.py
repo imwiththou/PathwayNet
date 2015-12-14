@@ -5,39 +5,39 @@ import ode
 
 #enzyme setup
 
-GluGA3P_vmax =
-GluGA3P_rate =
-GluGA3P_km =
-GluGA3P_gamma = 
+GluGA3P_vmax = 0.0
+GluGA3P_rate = 4.14
+GluGA3P_km = 0.451
+GluGA3P_gamma = 0.0
 
-GA3PDHAP_vmax =
-GA3PDHAP_rate = 
-GA3PDHAP_km = 
-GA3PDHAP_gamma =
+GA3PDHAP_vmax = 0.0
+GA3PDHAP_rate = 564.3791
+GA3PDHAP_km = 6.4539905
+GA3PDHAP_gamma = 0.0
 
-DHAPG3P_vmax =
-DHAPG3P_rate =
-DHAPG3P_km = 
-DHAPG3P_gamma =
+DHAPG3P_vmax = 0.0
+DHAPG3P_rate = 0.48
+DHAPG3P_km = 0.46
+DHAPG3P_gamma = 0.0
 
 #substrate setup
 
-Glu_vmax = 
-Glu_gamma = 
+Glu_vmax = 0.0
+Glu_gamma = 0.0
 
-GA3P_gamma = 
-DHAP_gamma = 
-G3P_gamma = 
+GA3P_gamma = 0.0
+DHAP_gamma = 0.0
+G3P_gamma = 0.0
 
 #ode system setup, reactant and product concentrations input respectively
 
 y = range(7)
 #[GluGA3P]
-y[1] = 
+y[1] = 4.06e-05
 #[GA3PDHAP]
-y[2] = 
+y[2] = 1.5e-06
 #[DHAPG3P]
-y[3] = 
+y[3] = 0.05
 #[Glu]
 y[4] = 1e-06
 #[GA3P]
