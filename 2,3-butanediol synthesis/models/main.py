@@ -21,79 +21,97 @@ DHAPG3P_gamma =
 
 #substrate setup
 
-Glu_vmax =
-Glu_gamma =
+Glu_vmax = 
+Glu_gamma = 
 
-GA3P_gamma =
-DHAP_gamma =
-G3P_gamma =
+GA3P_gamma = 
+DHAP_gamma = 
+G3P_gamma = 
 
-#ode system setup
+#ode system setup, reactant and product concentrations input respectively
 
 y = range(7)
-#GluGA3P
+#[GluGA3P]
 y[1] =
-#GA3PDHAP
+#[GA3PDHAP]
 y[2] =
-#DHAPG3P
-y[3] =
-#Glu
-y[4] =
-#GA3P
-y[5] =
-#DHAP
-y[6] =
-#G3P
-y[7] =
+#[DHAPG3P]
+y[3] = 
+#[Glu]
+y[4] = 1e-06
+#[GA3P]
+y[5] = 0.0
+#[DHAP]
+y[6] = 0.0
+#[G3P]
+y[7] = 0.0
 
 #ode individual definition
 
 def GluGA3P(t, y):
-	production =
-	degradation =
-	usage =
+	production = GluGA3P_vmax
+	degradation = GluGA3P_gamma * [Glu]
+	usage = 0
 	return production - degradation - usage
 
 def GA3PDHAP(t, y):
-	production =
-	degradation =
-	useage =
+	production = GA3PDHAP_vmax
+	degradation = GA3PDHAP_gamma * [GA3P]
+	usage = 0
 	return production - degradation - usage
 	
 def DHAPG3P(t, y):
-	production =
-	degradation =
-	useage =
+	production = DHAPG3P_vmax
+	degradation = DHAPG3P_gamma * [DHAP]
+	usage = 0
 	return production - degradation - usage
 	
 def Glu(t, y):
-	production =
-	degradation =
-	useage =
+	production = Glu_vmax
+	degradation = Glu_gamma * [Glu]
+	usage = ([Glu] * [GluGA3P] * GluGA3P_rate) / ([Glu] + GluGA3P_km)
 	return production - degradation - usage
 	
 def GA3P(t, y):
-	production =
-	degradation =
-	useage =
+	production = ([Glu] * [GluGA3P] * GluGA3P_rate) / ([Glu] + GluGA3P_km)
+	degradation = GA3P_gamma * [GA3P]
+	usage = ([GA3P] * [GA3PDHAP] * GA3PDHAP_rate) / ([GA3P] +GA3PDHAP_km)
 	return production - degradation - usage
 	
 def DHAP(t, y):
-	production =
-	degradation =
-	useage =
+	production = ([GA3P] * [GA3PDHAP] * GA3PDHAP_rate) / ([GA3P] +GA3PDHAP_km)
+	degradation = DHAP_gamma * [DHAP]
+	usage = ([DHAP] * [DHAPG3P] * DHAPG3P_rate) / ([DHAP]+DHAPG3P_km)
 	return production - degradation - usage	
 
 def G3P(t, y):
-	production =
-	degradation =
-	useage =
+	production = ([DHAP] * [DHAPG3P] * DHAPG3P_rate) / ([DHAP]+DHAPG3P_km)
+	degradation = G3P_gamma * [G3P]
+	usage = 0.0
 	return production - degradation - usage
 	
 #circuit ODE
 circuitODE = range(7)
+circuitODE[1] = GluGA3P
+circuitODE[2] = GA3PDHAP
+circuitODE[3] = DHAPG3P
+circuitODE[4] = Glu
+circuitODE[5] = GA3P
+circuitODE[6] = DHAP
+circuitODE[7] = G3P
 
+#iteration section
 
+t0 = 0.0
+tmax = 2000.0
+dt = 0.1
+outfile = 'RouteA.csv'
+f = open(outfile, 'w')
+header = ['time', 'GluGA3P', 'GA3PDHAP', 'DHAPG3P', 'Glu', 'GA3P', 'DHAP', 'G3P']
+f.write(','.join(header) + '\n')
+for x in ode.multirk4(circuitODE, t0, y, dt, tmax):
+    f.write(','.join([str(item) for item in x]) + '\n')
+f.close()
 
 
 #RouteB:Glu-GA3P-Pv-alphaAL-DA-AT-BDO
