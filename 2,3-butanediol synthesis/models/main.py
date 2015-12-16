@@ -55,7 +55,7 @@ y[6] = 0.0
 #[Gly]
 y[7] = 0.0
 #[G3PGly]
-y[8] = 0.0
+y[8] = 1e-06
 
 #ode individual definition
 
@@ -77,6 +77,12 @@ def DHAPG3P(t, y):
 	usage = 0
 	return production - degradation - usage
 	
+def G3PGly(t, y):
+	production = G3PGly_vmax
+	degradation = G3PGly_gamma * y[8]
+	usage = 0.0
+	return production - degradation -usage
+	
 def Glu(t, y):
 	production = Glu_vmax
 	degradation = Glu_gamma * y[3]
@@ -96,22 +102,18 @@ def DHAP(t, y):
 	return production - degradation - usage	
 
 def G3P(t, y):
-	production = (y[5] * y[2] * DHAPG3P_rate) / (y[5]+DHAPG3P_km)
+	production = (y[5] * y[2] * DHAPG3P_rate) / (y[5] + DHAPG3P_km)
 	degradation = G3P_gamma * y[6]
-	usage = ([G3P] * y[7] *G3PGly_rate) / ([G3P] + G3PGly_km)
+	usage = (y[7] * y[8] * G3PGly_rate) / (y[7] + G3PGly_km)
 	return production - degradation - usage
 	
 def Gly(t, y):
-	production = ([G3P] * y[7] *G3PGly_rate) / ([G3P] + G3PGly_km)
+	production = (y[7] * y[8] * G3PGly_rate) / (y[7] + G3PGly_km)
 	degradation = Gly_gamma * y[7]
 	usage = 0.0
 	return production - degradation - usage
 	
-def G3PGly(t, y):
-	production = G3PGly_vmax
-	degradation = G3PGly_gamma * y[8]
-	usage = 0.0
-	return production - degradation -usage
+
 	
 #circuit ODE
 circuitODE = range(9)
