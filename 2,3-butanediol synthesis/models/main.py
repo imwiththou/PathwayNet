@@ -1,7 +1,7 @@
 import ode
 #The whole pathways networks related with 2,3-butanediol synthesis can be divided into four dependent paths
 #-----------------------------------------------------
-#RouteA: Glu-GA3P-DHAP-G3P
+#RouteA: Glu-GA3P-DHAP-G3P-Gly
 
 #enzyme setup
 
@@ -20,6 +20,11 @@ DHAPG3P_rate = 0.48
 DHAPG3P_km = 0.46
 DHAPG3P_gamma = 0.0
 
+G3PGly_vmax = 0.094
+G3PGly_rate = 0.047
+G3PGly_km = 0.047
+G3PGly_gamma = 0 #data for Homo sapiens
+
 #substrate setup
 
 Glu_vmax = 0.0
@@ -28,10 +33,11 @@ Glu_gamma = 0.0
 GA3P_gamma = 0.0
 DHAP_gamma = 0.0
 G3P_gamma = 0.0
+Gly_gamma = 0.0
 
 #ode system setup, reactant and product concentrations input respectively
 
-y = range(7)
+y = range(9)
 #[GluGA3P]
 y[0] = 4.06e-05
 #[GA3PDHAP]
@@ -46,6 +52,10 @@ y[4] = 0.0
 y[5] = 0.0
 #[G3P]
 y[6] = 0.0
+#[Gly]
+y[7] = 0.0
+#[G3PGly]
+y[8] = 0.0
 
 #ode individual definition
 
@@ -88,11 +98,23 @@ def DHAP(t, y):
 def G3P(t, y):
 	production = (y[5] * y[2] * DHAPG3P_rate) / (y[5]+DHAPG3P_km)
 	degradation = G3P_gamma * y[6]
+	usage = ([G3P] * y[7] *G3PGly_rate) / ([G3P] + G3PGly_km)
+	return production - degradation - usage
+	
+def Gly(t, y):
+	production = ([G3P] * y[7] *G3PGly_rate) / ([G3P] + G3PGly_km)
+	degradation = Gly_gamma * y[7]
 	usage = 0.0
 	return production - degradation - usage
 	
+def G3PGly(t, y):
+	production = G3PGly_vmax
+	degradation = G3PGly_gamma * y[8]
+	usage = 0.0
+	return production - degradation -usage
+	
 #circuit ODE
-circuitODE = range(7)
+circuitODE = range(9)
 circuitODE[0] = GluGA3P
 circuitODE[1] = GA3PDHAP
 circuitODE[2] = DHAPG3P
@@ -100,6 +122,8 @@ circuitODE[3] = Glu
 circuitODE[4] = GA3P
 circuitODE[5] = DHAP
 circuitODE[6] = G3P
+circuitODE[7] = Gly
+circuitODE[8] = G3PGly
 
 #iteration setup
 
@@ -108,7 +132,7 @@ tmax = 20000.0
 dt = 0.1
 outfile = 'RouteA.csv'
 f = open(outfile, 'w')
-header = ['time', 'GluGA3P', 'GA3PDHAP', 'DHAPG3P', 'Glu', 'GA3P', 'DHAP', 'G3P']
+header = ['time', 'GluGA3P', 'GA3PDHAP', 'DHAPG3P', 'G3PGly', 'Glu', 'GA3P', 'DHAP', 'G3P', 'Gly']
 f.write(','.join(header) + '\n')
 for x in ode.multirk4(circuitODE, t0, y, dt, tmax):
     f.write(','.join([str(item) for item in x]) + '\n')
