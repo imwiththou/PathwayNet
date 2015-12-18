@@ -20,8 +20,8 @@ DHAPG3P_rate = 0.48
 DHAPG3P_km = 0.46
 DHAPG3P_gamma = 0.0
 
-G3PGly_vmax = 0.094
-G3PGly_rate = 0.047
+G3PGly_vmax = 0
+G3PGly_rate = 47
 G3PGly_km = 0.047
 G3PGly_gamma = 0 #data for Homo sapiens
 
@@ -44,72 +44,73 @@ y[0] = 4.06e-05
 y[1] = 1.5e-06
 #[DHAPG3P]
 y[2] = 0.05
-#[Glu]
-y[3] = 1e-06
-#[GA3P]
-y[4] = 0.0
-#[DHAP]
-y[5] = 0.0
-#[G3P]
-y[6] = 0.0
-#[Gly]
-y[7] = 0.0
 #[G3PGly]
-y[8] = 1e-06
+y[3] = 1e-06
+#[Glu]
+y[4] = 1e-06
+#[GA3P]
+y[5] = 0.0
+#[DHAP]
+y[6] = 0.0
+#[G3P]
+y[7] = 0.0
+#[Gly]
+y[8] = 0.0
 
-#ode individual definition
+
+#individual definition
 
 def GluGA3P(t, y):
 	production = GluGA3P_vmax
-	degradation = GluGA3P_gamma * y[3]
+	degradation = GluGA3P_gamma * y[0]
 	usage = 0
 	return production - degradation - usage
 
 def GA3PDHAP(t, y):
 	production = GA3PDHAP_vmax
-	degradation = GA3PDHAP_gamma * y[4]
+	degradation = GA3PDHAP_gamma * y[1]
 	usage = 0
 	return production - degradation - usage
 	
 def DHAPG3P(t, y):
 	production = DHAPG3P_vmax
-	degradation = DHAPG3P_gamma * y[5]
+	degradation = DHAPG3P_gamma * y[2]
 	usage = 0
 	return production - degradation - usage
 	
 def G3PGly(t, y):
 	production = G3PGly_vmax
-	degradation = G3PGly_gamma * y[8]
+	degradation = G3PGly_gamma * y[3]
 	usage = 0.0
 	return production - degradation -usage
 	
 def Glu(t, y):
 	production = Glu_vmax
-	degradation = Glu_gamma * y[3]
-	usage = (y[3] * y[0] * GluGA3P_rate) / (y[3] + GluGA3P_km)
+	degradation = Glu_gamma * y[4]
+	usage = (y[4] * y[5] * GluGA3P_rate) / (y[4] + GluGA3P_km)
 	return production - degradation - usage
 	
 def GA3P(t, y):
-	production = (y[3] * y[0] * GluGA3P_rate) / (y[3] + GluGA3P_km)
-	degradation = GA3P_gamma * y[4]
-	usage = (y[4] * y[1] * GA3PDHAP_rate) / (y[4] +GA3PDHAP_km)
+	production = (y[4] * y[5] * GluGA3P_rate) / (y[4] + GluGA3P_km)
+	degradation = GA3P_gamma * y[5]
+	usage = (y[5] * y[6] * GA3PDHAP_rate) / (y[5] + GA3PDHAP_km)
 	return production - degradation - usage
 	
 def DHAP(t, y):
-	production = (y[4] * y[1] * GA3PDHAP_rate) / (y[4] +GA3PDHAP_km)
-	degradation = DHAP_gamma * y[5]
-	usage = (y[5] * y[2] * DHAPG3P_rate) / (y[5]+DHAPG3P_km)
+	production = (y[5] * y[6] * GA3PDHAP_rate) / (y[5] +GA3PDHAP_km)
+	degradation = DHAP_gamma * y[6]
+	usage = (y[6] * y[7] * DHAPG3P_rate) / (y[6] + DHAPG3P_km)
 	return production - degradation - usage	
 
 def G3P(t, y):
-	production = (y[5] * y[2] * DHAPG3P_rate) / (y[5] + DHAPG3P_km)
-	degradation = G3P_gamma * y[6]
+	production = (y[6] * y[7] * DHAPG3P_rate) / (y[6] + DHAPG3P_km)
+	degradation = G3P_gamma * y[7]
 	usage = (y[7] * y[8] * G3PGly_rate) / (y[7] + G3PGly_km)
 	return production - degradation - usage
 	
 def Gly(t, y):
 	production = (y[7] * y[8] * G3PGly_rate) / (y[7] + G3PGly_km)
-	degradation = Gly_gamma * y[7]
+	degradation = Gly_gamma * y[8]
 	usage = 0.0
 	return production - degradation - usage
 	
@@ -120,19 +121,19 @@ circuitODE = range(9)
 circuitODE[0] = GluGA3P
 circuitODE[1] = GA3PDHAP
 circuitODE[2] = DHAPG3P
-circuitODE[3] = Glu
-circuitODE[4] = GA3P
-circuitODE[5] = DHAP
-circuitODE[6] = G3P
-circuitODE[7] = Gly
-circuitODE[8] = G3PGly
+circuitODE[3] = G3PGly
+circuitODE[4] = Glu
+circuitODE[5] = GA3P
+circuitODE[6] = DHAP
+circuitODE[7] = G3P
+circuitODE[8] = Gly
 
 #iteration setup
 
 t0 = 0.0
 tmax = 20000.0
 dt = 0.1
-outfile = 'RouteA.csv'
+outfile = 'RouteA_updated.csv'
 f = open(outfile, 'w')
 header = ['time', 'GluGA3P', 'GA3PDHAP', 'DHAPG3P', 'G3PGly', 'Glu', 'GA3P', 'DHAP', 'G3P', 'Gly']
 f.write(','.join(header) + '\n')
@@ -141,7 +142,7 @@ for x in ode.multirk4(circuitODE, t0, y, dt, tmax):
 f.close()
 
 #-----------------------------------------------------
-#RouteB:Glu-GA3P-Pv-alphaAL-DA-AT-BDO
+#RouteB:Glu-GA3P-Pv-AlphaAL-DA-AT-BDO
 
 
 #-----------------------------------------------------
