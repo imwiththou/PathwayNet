@@ -49,6 +49,7 @@ BDOb_gamma =
 
 
 #ODE system setup, reactant and product concentrations input respectively
+
 y = range(13)
 #[GluGA3Pb]
 y[0] = 
@@ -80,86 +81,87 @@ y[12] =
 
 #individual definition
 
-def GluFA3Pb(t, y):
-	production =
-	degradation =
-	usage =
+def GluGA3Pb(t, y):
+	production = GluGA3Pb_vmax
+	degradation = GluGA3Pb_gamma * [GluGA3Pb]
+	usage = 0.0 
 	return production - degradation - usage
 
 def GA3PPvb(t, y):
-	production =
-	degradation =
-	usage =
+	production = GA3PPvb_vmax
+	degradation = GA3PPvb_gamma * [GA3PPvb]
+	usage = 0.0
 	return production - degradation - usage
 
 def PvAlphaALb(t, y):
-	production =
-	degradation =
-	usage =
+	production = PvAlphaALb_vmax
+	degradation = PvAlphaALb_gamma * [PvAlphaALb]
+	usage = 0.0
 	return production - degradation - usage
 	
 def AlphaALDAb(t, y):
-	production =
-	degradation =
-	usage =
+	production = AlphaALDAb_vmax
+	degradation = AlphaALDAb_gamma * [AlphaALDAb]
+	usage = 0.0
 	return production - degradation - usage
 	
 def DAATb(t, y):
-	production =
-	degradation =
-	usage =
+	production = DAATb_vmax
+	degradation = DAATb_gamma * [DAATb]
+	usage = 0.0
 	return production - degradation - usage
 	
 def ATBDOb(t, y):
-	production =
-	degradation =
-	usage =
+	production = ATBDOb_vmax
+	degradation = ATBDOb_gamma * [ATBDOb]
+	usage = 0.0
 	return production - degradation - usage
 	
 
 def Glub(t, y):
-	production =
-	degradation =
-	usage =
+	production = Glub_vmax
+	degradation = Glub_gamma * [Glub]
+	usage = ([Glub] * [GA3Pb] * GluGA3Pb_rate)/([Glub] + GluGA3Pb_km)
 	return production - degradation - usage
 	
 def GA3Pb(t, y):
-	production =
-	degradation =
-	usage =
+	production = ([Glub] * [GA3Pb] * GluGA3Pb_rate)/([Glub] + GluGA3Pb_km)
+	degradation = GA3Pb_gamma * [GA3Pb]
+	usage = ([GA3Pb] * [Pvb] * GA3PPvb_rate)/([GA3P] + GA3PPvb_km)
 	return production - degradation - usage
 	
 def Pvb(t, y):
-	production =
-	degradation =
-	usage =
+	production = ([GA3Pb] * [Pvb] * GA3PPvb_rate)/([GA3P] + GA3PPvb_km)
+	degradation = Pvb_gamma * [Pvb]
+	usage = ([Pvb] * [AlphaALb] * PvbAlphaALb_rate)/([Pvb] + PvbAlphaALb_km)
 	return production - degradation - usage
 	
 def AlphaALb(t, y):
-	production =
-	degradation =
-	usage =
+	production = ([Pvb] * [AlphaALb] * PvbAlphaALb_rate)/([Pvb] + PvbAlphaALb_km)
+	degradation = AlphaALb_gamma * [AlphaALb]
+	usage = ([AlphaALb] * [DAb] * AlphaALDAb_rate)/([AlphaALb] + AlphaALDAb_km)
 	return production - degradation - usage
 	
 def DAb(t, y):
-	production =
-	degradation =
-	usage =
+	production = ([AlphaALb] * [DAb] * AlphaALDAb_rate)/([AlphaALb] + AlphaALDAb_km)
+	degradation = DAb_gamma * [DAb]
+	usage = ([DAb] * [ATb] * DAATb_rate)/([DAb] + DAATb_km)
 	return production - degradation - usage
 	
 def ATb(t, y):
-	production =
-	degradation =
-	usage =
+	production = ([DAb] * [ATb] * DAATb_rate)/([DAb] + DAATb_km)
+	degradation = ATb_gamma * [ATb]
+	usage = ([ATb] * [BDOb] * ATBDOb_rate)/([ATb] + ATBDOb_km)
 	return production - degradation - usage
 	
 def BDOb(t, y):
-	production =
-	degradation =
-	usage =
+	production = ([ATb] * [BDOb] * ATBDOb_rate)/([ATb] + ATBDOb_km)
+	degradation = BDOb_gamma * [BDOb]
+	usage = 0.0
 	return production - degradation - usage
 
 #circuit ODE
+
 circuitODE = range(13)
 circuitODE[0] = GluGA3Pb
 circuitODE[1] = GA3PPvb
@@ -189,4 +191,3 @@ f.write(','.join(header) + '\n')
 for x in ode.multirk4(circuitODE, t0, y, dt, tmax):
     f.write(','.join([str(item) for item in x]) + '\n')
 f.close()
-

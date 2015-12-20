@@ -145,6 +145,8 @@ f.close()
 #RouteB:Glu-GA3P-Pv-AlphaAL-DA-AT-BDO
 
 
+
+
 #-----------------------------------------------------
 #RouteC:Glu-GA3P-Pv-AA-AT-BDO
 
