@@ -8,3 +8,6 @@ Thumbs.db
 
 # compiled Python files
 sbol/*.pyc
+
+ode.pyc
+2,3-butanediol synthesis/models/ode.pyc
