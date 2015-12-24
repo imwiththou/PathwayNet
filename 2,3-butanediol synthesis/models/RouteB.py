@@ -123,41 +123,41 @@ def ATBDOb(t, y):
 def Glub(t, y):
 	production = Glub_vmax
 	degradation = Glub_gamma * y[6]
-	usage = (y[6] * y[7] * GluGA3Pb_rate)/(y[6] + GluGA3Pb_km)
+	usage = (y[6] * y[0] * GluGA3Pb_rate)/(y[6] + GluGA3Pb_km)
 	return production - degradation - usage
 	
 def GA3Pb(t, y):
-	production = (y[6] * y[7] * GluGA3Pb_rate)/(y[6] + GluGA3Pb_km)
+	production = (y[6] * y[0] * GluGA3Pb_rate)/(y[6] + GluGA3Pb_km)
 	degradation = GA3Pb_gamma * y[7]
-	usage = (y[7] * y[8] * GA3PPvb_rate)/(y[7] + GA3PPvb_km)
+	usage = (y[7] * y[1] * GA3PPvb_rate)/(y[7] + GA3PPvb_km)
 	return production - degradation - usage
 	
 def Pvb(t, y):
-	production = (y[7] * y[8] * GA3PPvb_rate)/(y[7] + GA3PPvb_km)
+	production = (y[7] * y[1] * GA3PPvb_rate)/(y[7] + GA3PPvb_km)
 	degradation = Pvb_gamma * y[8]
-	usage = (y[8] * y[9] * PvAlphaALb_rate)/(y[8] + PvAlphaALb_km)
+	usage = (y[8] * y[2] * PvAlphaALb_rate)/(y[8] + PvAlphaALb_km)
 	return production - degradation - usage
 	
 def AlphaALb(t, y):
-	production = (y[8] * y[9] * PvAlphaALb_rate)/(y[8] + PvAlphaALb_km)
+	production = (y[8] * y[2] * PvAlphaALb_rate)/(y[8] + PvAlphaALb_km)
 	degradation = AlphaALb_gamma * y[9]
-	usage = (y[9] * y[10] * AlphaALDAb_rate)/(y[9] + AlphaALDAb_km)
+	usage = (y[9] * y[3] * AlphaALDAb_rate)/(y[9] + AlphaALDAb_km)
 	return production - degradation - usage
 	
 def DAb(t, y):
-	production = (y[9] * y[10] * AlphaALDAb_rate)/(y[9] + AlphaALDAb_km)
+	production = (y[9] * y[3] * AlphaALDAb_rate)/(y[9] + AlphaALDAb_km)
 	degradation = DAb_gamma * y[10]
-	usage = (y[10] * y[11] * DAATb_rate)/(y[10] + DAATb_km)
+	usage = (y[10] * y[4] * DAATb_rate)/(y[10] + DAATb_km)
 	return production - degradation - usage
 	
 def ATb(t, y):
-	production = (y[10] * y[11] * DAATb_rate)/(y[10] + DAATb_km)
+	production = (y[10] * y[4] * DAATb_rate)/(y[10] + DAATb_km)
 	degradation = ATb_gamma * y[11]
-	usage = (y[11] * y[12] * ATBDOb_rate)/(y[11] + ATBDOb_km)
+	usage = (y[11] * y[5] * ATBDOb_rate)/(y[11] + ATBDOb_km)
 	return production - degradation - usage
 	
 def BDOb(t, y):
-	production = (y[11] * y[12] * ATBDOb_rate)/(y[11] + ATBDOb_km)
+	production = (y[11] * y[5] * ATBDOb_rate)/(y[11] + ATBDOb_km)
 	degradation = BDOb_gamma * y[12]
 	usage = 0.0
 	return production - degradation - usage
