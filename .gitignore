@@ -5,3 +5,9 @@ Thumbs.db
 
 .rbenv-version
 .rvmrc
+
+# compiled Python files
+sbol/*.pyc
+
+ode.pyc
+2,3-butanediol synthesis/models/ode.pyc

@@ -49,6 +49,7 @@ y[2] = 1e-06    # [peptide_RBS1]
 y[3] = 0.0    # [mRNA_pLasR]
 y[4] = 0.0    # [peptide_RBS2]
 y[5] = 0.0    # [interaction_LasR_AHL]
+y[6]
  
  
 t0 = 0.0
