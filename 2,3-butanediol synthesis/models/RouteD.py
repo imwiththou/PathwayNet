@@ -76,7 +76,7 @@ def PvAAd(t, y):
 	return	production - degradation - usage
 	
 def AAACTd(t, y):
-	production = AAACT_vmax
+	production = AAACTd_vmax
 	degradation = AAACTd_gamma * y[2]
 	usage = 0.0
 	return	production - degradation - usage
@@ -137,7 +137,7 @@ circuitODE[8] = ETHd
 t0 = 0.0
 tmax = 20000.0
 dt = 0.1
-outfile = 'RouteB.csv'
+outfile = 'RouteD.csv'
 f = open(outfile, 'w')
 header = ['time', 'GluPvd', 'PvAAd', 'AAACTd', 'ACTETHd', 'Glud', 'Pvd', 'AAd', 'ACTd', 'ETHd']
 f.write(','.join(header) + '\n')

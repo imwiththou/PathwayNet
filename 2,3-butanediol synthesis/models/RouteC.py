@@ -7,23 +7,23 @@ import ode
 #parameter not confirmed yet
 
 GluPvc_vmax = 0.0
-GluPvc_rate = 
-GluPvc_km = 
+GluPvc_rate = 7.32
+GluPvc_km = 1.1
 GluPvc_gamma = 0.0
 
-PvAAc_vmax = 
-PvAAc_rate = 
-PvAAc_km = 
+PvAAc_vmax = 9.2
+PvAAc_rate = 0.22
+PvAAc_km = 0.717
 PvAAc_gamma = 0.0
 
 AAATc_vmax = 0
-AAATc_rate = 
-AAATc_km = 
+AAATc_rate = 4.2
+AAATc_km = 2.11
 AAATc_gamma = 0.0
 
 ATBDOc_vmax = 0.9
-ATBDOc_rate = 
-ATBDOc_km = 
+ATBDOc_rate = 3.2
+ATBDOc_km = 1.5
 ATBDOc_gamma = 0.0
 
 #substrate setup
@@ -40,13 +40,13 @@ BDO_gamma = 0
 
 y = range(9)
 #[GluPvc]
-y[0] = 
+y[0] = 1.1e-05
 #[PvAAc]
-y[1] = 
+y[1] = 1e-06
 #[AAATc]
-y[2] = 
+y[2] = 1e-05
 #[ATBDOc]
-y[3] = 
+y[3] = 7e-06
 
 #[Gluc]
 y[4] = 1e-05
@@ -88,7 +88,7 @@ def ATBDOc(t, y):
 	
 def Gluc(t, y):
 	production = Gluc_vmax
-	degradation = Gluc_gamma
+	degradation = Gluc_gamma * [Gluc]
 	usage = ([Gluc] * [GluPvc] * GluPvc_rate)/([Gluc] + GluPvc_km)
 	return production - degradation - usage
 	
@@ -137,7 +137,7 @@ circuitODE[8] = BDOc
 t0 = 0.0
 tmax = 20000.0
 dt = 0.1
-outfile = 'RouteB.csv'
+outfile = 'RouteC.csv'
 f = open(outfile, 'w')
 header = ['time', 'GluPvc', 'PvAAc', 'AAATc', 'ATBDOc', 'Gluc', 'Pvc', 'AAc', 'ATc', 'BDOc']
 f.write(','.join(header) + '\n')
