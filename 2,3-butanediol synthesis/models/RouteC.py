@@ -34,7 +34,7 @@ Gluc_gamma = 0
 Pvc_gamma = 0
 AAc_gamma = 0
 ATc_gamma = 0
-BDO_gamma = 0
+BDOc_gamma = 0
 
 #ODE system setup, reactant and product concentrations input respectively
 
@@ -81,38 +81,38 @@ def AAATc(t, y):
 	
 def ATBDOc(t, y):
 	production = ATBDOc_vmax
-	degradation = ATBDOc * y[3]
+	degradation = ATBDOc_gamma * y[3]
 	usage = 0.0
 	return production - degradation - usage
 	
 	
 def Gluc(t, y):
 	production = Gluc_vmax
-	degradation = Gluc_gamma * [Gluc]
-	usage = ([Gluc] * [GluPvc] * GluPvc_rate)/([Gluc] + GluPvc_km)
+	degradation = Gluc_gamma * y[4]
+	usage = (y[4] * y[0] * GluPvc_rate)/(y[4] + GluPvc_km)
 	return production - degradation - usage
 	
 def Pvc(t, y):
-	production = ([Gluc] * [GluPvc] * GluPvc_rate)/([Gluc] + GluPvc_km)
-	degradation = Pvc_gamma * [Pvc]
-	usage = ([Pvc] * [PvAAc] * PvAAc_rate)/([Pvc] + PvAAc_km)
+	production = (y[4] * y[0] * GluPvc_rate)/(y[4] + GluPvc_km)
+	degradation = Pvc_gamma * y[5]
+	usage = (y[5] * y[1] * PvAAc_rate)/(y[5] + PvAAc_km)
 	return production - degradation - usage
 	
 def AAc(t, y):
-	production = ([Pvc] * [PvAAc] * PvAAc_rate)/([Pvc] + PvAAc_km)
-	degradation = AAc_gamma * [AAc]
-	usage = ([AAc] * [AAATc] * AAATc_rate)/([AAc] + AAATc_km)
+	production = (y[5] * y[1] * PvAAc_rate)/(y[5] + PvAAc_km)
+	degradation = AAc_gamma * y[6]
+	usage = (y[6] * y[2] * AAATc_rate)/(y[6] + AAATc_km)
 	return production - degradation - usage
 	
 def ATc(t, y):
-	production = ([AAc] * [AAATc] * AAATc_rate)/([AAc] + AAATc_km)
-	degradation = ATc_gamma * [ATc]
-	usage = ([ATc] * [ATBDOc] * ATBDOc_rate)/([ATc] + ATBDOc_km)
+	production = (y[6] * y[2] * AAATc_rate)/(y[6] + AAATc_km)
+	degradation = ATc_gamma * y[7]
+	usage = (y[7] * y[3] * ATBDOc_rate)/(y[7] + ATBDOc_km)
 	return production - degradation - usage
 	
 def BDOc(t, y):
-	production = ([ATc] * [ATBDOc] * ATBDOc_rate)/([ATc] + ATBDOc_km)
-	degradation = BDOc_gamma * [BDOc]
+	production = (y[7] * y[3] * ATBDOc_rate)/(y[7] + ATBDOc_km)
+	degradation = BDOc_gamma * y[8]
 	usage = 0
 	return production - degradation - usage
 	
@@ -135,7 +135,7 @@ circuitODE[8] = BDOc
 #iteration setup
 
 t0 = 0.0
-tmax = 20000.0
+tmax = 2000.0
 dt = 0.1
 outfile = 'RouteC.csv'
 f = open(outfile, 'w')
