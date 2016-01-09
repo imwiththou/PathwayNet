@@ -2,6 +2,8 @@ import ode
 #-----------------------------------------------------
 #RouteB:Glu-GA3P-Pv-AlphaAL-DA-AT-BDO
 
+#Dec 19, 2015
+
 #enzyme setup
 
 GluGA3Pb_vmax = 0.0

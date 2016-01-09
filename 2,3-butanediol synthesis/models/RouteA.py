@@ -3,6 +3,8 @@ import ode
 #-----------------------------------------------------
 #RouteA: Glu-GA3P-DHAP-G3P-Gly
 
+#Dec 24, 2015
+
 #enzyme setup
 
 GluGA3P_vmax = 0.0
