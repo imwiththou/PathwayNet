@@ -9,49 +9,49 @@ import ode
 #parameter not confirmed yet
 
 GluPvd_vmax = 0.0
-GluPvd_rate = 
-GluPvd_km =
-GluPvd_gamma =
+GluPvd_rate = 3.14
+GluPvd_km = 0.112
+GluPvd_gamma = 0
 
-PvAAd_vmax = 
-PvAAd_rate =
-PvAAd_km =
-PvAAd_gamma =
+PvAAd_vmax = 0.238
+PvAAd_rate = 5.2
+PvAAd_km = 1.414
+PvAAd_gamma = 0.2
 
-AAACTd_vmax =
-AAACTd_rate =
-AAACTd_km =
-AAACTd_gamma =
+AAACTd_vmax = 1.732
+AAACTd_rate = 12.1
+AAACTd_km = 0.91
+AAACTd_gamma = 1.2
 
-ACTETHd_vmax = 
-ACTETHd_rate =
-ACTETHd_km =
-ACTETHd_gamma =
+ACTETHd_vmax = 0.9
+ACTETHd_rate = 9.1
+ACTETHd_km = 0.618
+ACTETHd_gamma = 0.0
 
 #substrate setup
 
-Glud_vmax =
-Glud_gamma =
+Glud_vmax = 0
+Glud_gamma = 0
 
-Pvd_gamma =
-AAd_gamma =
-ACTd_gamma =
-ETHd_gamma =
+Pvd_gamma = 0
+AAd_gamma = 0
+ACTd_gamma = 0
+ETHd_gamma = 0
 
 #ODE system setup, reactant and product concentrations input respectively
 
 y = range(9)
 #[GluPvd]
-y[0] = 
+y[0] = 3e-05
 #[PvAAd]
-y[1] = 
+y[1] = 1e-05
 #[AAACTd]
-y[2] = 
+y[2] = 9e-06
 #[ACTETHd]
-y[3] = 
+y[3] = 1.2e-05
 
 #[Glud]
-y[4] =
+y[4] = 1e-05
 #[Pvd]
 y[5] = 0.0
 #[AAd]
@@ -65,56 +65,56 @@ y[8] = 0.0
 
 def GluPvd(t, y):
 	production = GluPvd_vmax
-	degradation = GluPvd_gamma * [GluPvd]
+	degradation = GluPvd_gamma * y[0]
 	usage = 0.0
 	return	production - degradation - usage
 	
 def PvAAd(t, y):
 	production = PvAAd_vmax
-	degradation = PvAAd_gamma * [PvAAd]
+	degradation = PvAAd_gamma * y[1]
 	usage = 0.0
 	return	production - degradation - usage
 	
 def AAACTd(t, y):
 	production = AAACT_vmax
-	degradation = AAACTd_gamma * [AAACTd]
+	degradation = AAACTd_gamma * y[2]
 	usage = 0.0
 	return	production - degradation - usage
 	
 def ACTETHd(t, y):
 	production = ACTETHd_vmax
-	degradation = ACTETHd_gamma * [ACTETHd]
+	degradation = ACTETHd_gamma * y[3]
 	usage = 0.0
 	return	production - degradation - usage
 	
 
 def Glud(t, y):
 	production = Glud_vmax
-	degradation = Glud_gamma * [Glud]
-	usage = ([Glud] * [GluPvd] * GluPvd_rate)/([Glud] + GluPvd_km)
+	degradation = Glud_gamma * y[4]
+	usage = (y[4] * y[0] * GluPvd_rate)/(y[4] + GluPvd_km)
 	return	production - degradation - usage
 	
 def Pvd(t, y):
-	production = ([Glud] * [GluPvd] * GluPvd_rate)/([Glud] + GluPvd_km)
-	degradation = Pvd_gamma * [Pvd] 
-	usage = ([Pvd] * [PvAAd] * PvAAd_rate)/([Pvd] + PvAAd_km)
+	production = (y[4] * y[0] * GluPvd_rate)/(y[4] + GluPvd_km)
+	degradation = Pvd_gamma * y[5] 
+	usage = (y[5] * y[1] * PvAAd_rate)/(y[5] + PvAAd_km)
 	return	production - degradation - usage
 	
 def AAd(t, y):
-	production = ([Pvd] * [PvAAd] * PvAAd_rate)/([Pvd] + PvAAd_km)
-	degradation = AAd_gamma * [AAd]
-	usage = ([AAd] * [AAACTd] * AAACTd_rate)/([AAd] + AAACTd_km)
+	production = (y[5] * y[1] * PvAAd_rate)/(y[5] + PvAAd_km)
+	degradation = AAd_gamma * y[6]
+	usage = (y[6] * y[2] * AAACTd_rate)/(y[6] + AAACTd_km)
 	return	production - degradation - usage
 	
 def ACTd(t, y):
-	production = ([AAd] * [AAACTd] * AAACTd_rate)/([AAd] + AAACTd_km)
-	degradation = ACTd_gamma * [ACTd]
-	usage = ([ACTd] * [ACTETHd] * ACTETHd_rate)/([ACTd] + ACTETHd_km)
+	production = (y[6] * y[2] * AAACTd_rate)/(y[6] + AAACTd_km)
+	degradation = ACTd_gamma * y[7]
+	usage = (y[7] * y[3] * ACTETHd_rate)/(y[7] + ACTETHd_km)
 	return	production - degradation - usage
 	
 def ETHd(t, y):
-	production = ([ACTd] * [ACTETHd] * ACTETHd_rate)/([ACTd] + ACTETHd_km)
-	degradation = ETHd_gamma * [Ethd]
+	production = (y[7] * y[3] * ACTETHd_rate)/(y[7] + ACTETHd_km)
+	degradation = ETHd_gamma * y[8]
 	usage = 0.0
 	return	production - degradation - usage
 	
