@@ -13,17 +13,17 @@ GluPvd_rate = 3.14
 GluPvd_km = 0.112
 GluPvd_gamma = 0
 
-PvAAd_vmax = 0.238
+PvAAd_vmax = 0
 PvAAd_rate = 5.2
 PvAAd_km = 1.414
 PvAAd_gamma = 0.2
 
-AAACTd_vmax = 1.732
+AAACTd_vmax = 0
 AAACTd_rate = 12.1
 AAACTd_km = 0.91
 AAACTd_gamma = 1.2
 
-ACTETHd_vmax = 0.9
+ACTETHd_vmax = 1e-06
 ACTETHd_rate = 9.1
 ACTETHd_km = 0.618
 ACTETHd_gamma = 0.0

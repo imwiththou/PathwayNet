@@ -11,7 +11,7 @@ GluPvc_rate = 7.32
 GluPvc_km = 1.1
 GluPvc_gamma = 0.0
 
-PvAAc_vmax = 9.2
+PvAAc_vmax = 1e-05
 PvAAc_rate = 0.22
 PvAAc_km = 0.717
 PvAAc_gamma = 0.0
@@ -21,7 +21,7 @@ AAATc_rate = 4.2
 AAATc_km = 2.11
 AAATc_gamma = 0.0
 
-ATBDOc_vmax = 0.9
+ATBDOc_vmax = 1e-05
 ATBDOc_rate = 3.2
 ATBDOc_km = 1.5
 ATBDOc_gamma = 0.0
@@ -135,7 +135,7 @@ circuitODE[8] = BDOc
 #iteration setup
 
 t0 = 0.0
-tmax = 2000.0
+tmax = 20000.0
 dt = 0.1
 outfile = 'RouteC.csv'
 f = open(outfile, 'w')
