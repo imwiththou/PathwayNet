@@ -2,6 +2,8 @@ import ode
 #-----------------------------------------------------
 #RouteB:Glu-GA3P-Pv-AlphaAL-DA-AT-BDO
 
+#Dec 19, 2015
+
 #enzyme setup
 
 GluGA3Pb_vmax = 0.0
@@ -11,7 +13,7 @@ GluGA3Pb_gamma = 0.0
 
 #not confirmed yet
 
-GA3PPvb_vmax = 0.51
+GA3PPvb_vmax = 0
 GA3PPvb_rate = 4.14
 GA3PPvb_km = 0.7
 GA3PPvb_gamma = 0.0
@@ -21,7 +23,7 @@ PvAlphaALb_rate = 21.3
 PvAlphaALb_km = 0.92
 PvAlphaALb_gamma = 0.0
 
-AlphaALDAb_vmax = 0.9
+AlphaALDAb_vmax = 0
 AlphaALDAb_rate = 21.5
 AlphaALDAb_km = 0.672
 AlphaALDAb_gamma = 0.0
@@ -31,7 +33,7 @@ DAATb_rate = 59.1
 DAATb_km = 0.77
 DAATb_gamma = 0.0
 
-ATBDOb_vmax = 8.2
+ATBDOb_vmax = 0
 ATBDOb_rate = 0.11
 ATBDOb_km = 0.732
 ATBDOb_gamma = 0.0
