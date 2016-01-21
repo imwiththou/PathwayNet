@@ -23,7 +23,7 @@ AAACTd_rate = 12.1
 AAACTd_km = 0.91
 AAACTd_gamma = 1.2
 
-ACTETHd_vmax = 1e-06
+ACTETHd_vmax = 0
 ACTETHd_rate = 9.1
 ACTETHd_km = 0.618
 ACTETHd_gamma = 0.0
