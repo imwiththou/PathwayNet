@@ -1,255 +1,306 @@
 import ode
 
 #enzyme initial condition setup
-GlucoseGA3P_vmax = 
-GlucoseGA3P_gamma =
-GlucoseGA3P_rate =
-GlucoseGA3P_km =
+GlucoseGA3P_vmax = 0
+GlucoseGA3P_gamma = 0
+GlucoseGA3P_rate = 31.4
+GlucoseGA3P_km = 0.269
 
-GA3PDHAP_vmax =
-GA3PDHAP_gamma =
-GA3PDHAP_rate =
-GA3PDHAP_km =
+GA3PDHAP_vmax = 0
+GA3PDHAP_gamma = 0
+GA3PDHAP_rate = 44
+GA3PDHAP_km = 0.029
 
-DHAPG3P_vmax =
-DHAPG3P_gamma =
-DHAPG3P_rate =
-DHAPG3P_km =
+DHAPG3P_vmax = 0
+DHAPG3P_gamma = 0
+DHAPG3P_rate = 3.14
+DHAPG3P_km = 0.269
 
-G3PGlycerol_vmax =
-G3PGlycerol_gamma =
-G3PGlycerol_rate =
-G3PGlycerol_km =
+G3PGlycerol_vmax = 0
+G3PGlycerol_gamma = 0
+G3PGlycerol_rate = 3.14
+G3PGlycerol_km = 0.269
 
-GA3PPyruvate_vmax =
-GA3PPyruvate_gamma =
-GA3PPyruvate_rate = 
-GA3PPyruvate_km =
+GA3PPyruvate_vmax = 0
+GA3PPyruvate_gamma = 0
+GA3PPyruvate_rate = 3.14
+GA3PPyruvate_km = 0.269
 
-PyruvateAlphaAcetolactate_vmax =
-PyruvateAlphaAcetolactate_gamma =
-PyruvateAlphaAcetolactate_rate =
-PyruvateAlphaAcetolactate_km =
+PyruvateAlphaAcetolactate_vmax = 0
+PyruvateAlphaAcetolactate_gamma = 0
+PyruvateAlphaAcetolactate_rate = 3.14
+PyruvateAlphaAcetolactate_km = 0.269
 
-AlphaAcetolactateDiacetyl_vmax =
-AlphaAcetolactateDiacetyl_gamma =
-AlphaAcetolactateDiacetyl_rate =
-AlphaAcetolactateDiacetyl_km =
+AlphaAcetolactateDiacetyl_vmax = 0
+AlphaAcetolactateDiacetyl_gamma = 0
+AlphaAcetolactateDiacetyl_rate = 3.14
+AlphaAcetolactateDiacetyl_km = 0.269
 
-DiacetylAcetoin_vmax =
-DiacetylAcetoin_gamma =
-DiacetylAcetoin_rate =
-DiacetylAcetoin_km =
+DiacetylAcetoin_vmax = 0
+DiacetylAcetoin_gamma = 0
+DiacetylAcetoin_rate = 3.14
+DiacetylAcetoin_km = 0.269
 
-AcetoinBDO_vmax =
-AcetoinBDO_gamma =
-AcetoinBDO_rate =
-AcetoinBDO_km =
+AcetoinBDO_vmax = 0
+AcetoinBDO_gamma = 0
+AcetoinBDO_rate = 3.14
+AcetoinBDO_km = 0.269
 
-PyruvateAcetylaldehyde_vmax =
-PyruvateAcetylaldehyde_gamma =
-PyruvateAcetylaldehyde_rate =
-PyruvateAcetylaldehyde_km =
+PyruvateAcetylaldehyde_vmax = 0
+PyruvateAcetylaldehyde_gamma = 0
+PyruvateAcetylaldehyde_rate = 3.14
+PyruvateAcetylaldehyde_km = 0.269
 
-AcetylaldehydeAcetoin_vmax =
-AcetylaldehydeAcetoin_gamma =
-AcetylaldehydeAcetoin_rate =
-AcetylaldehydeAcetoin_km =
+AcetylaldehydeAcetoin_vmax = 0
+AcetylaldehydeAcetoin_gamma = 0
+AcetylaldehydeAcetoin_rate = 3.14
+AcetylaldehydeAcetoin_km = 0.269
 
-AcetylaldehydeAcetate_vmax =
-AcetylaldehydeAcetate_gamma =
-AcetylaldehydeAcetate_rate =
-AcetylaldehydeAcetate_km =
+AcetylaldehydeAcetate_vmax = 0
+AcetylaldehydeAcetate_gamma = 0
+AcetylaldehydeAcetate_rate = 3.14
+AcetylaldehydeAcetate_km = 0.269
 
-AcetateEthanol_vmax =
-AcetateEthanol_gamma =
-AcetateEthanol_rate =
-AcetateEthanol_km =
+AcetateEthanol_vmax = 0
+AcetateEthanol_gamma = 0
+AcetateEthanol_rate = 3.14
+AcetateEthanol_km = 0.269
 
 #reactant initial condition setup
 
-Glucose_vmax =
-Glucose_gamma =
+Glucose_vmax = 0
+Glucose_gamma = 0
 
-GA3P_gamma =
-DHAP_gamma =
-G3P_gamma =
-Glycerol_gamma =
-Pyruvate_gamma =
-AlphaAcetolactate_gamma =
-Diacetyl_gamma =
-Acetoin_gamma =
-BDO_gamma =
-Acetylaldehyde_gamma =
-Acetate_gamma =
-Ethanol_gamma =
+GA3P_gamma = 0
+DHAP_gamma = 0
+G3P_gamma = 0
+Glycerol_gamma = 0
+Pyruvate_gamma = 0
+AlphaAcetolactate_gamma = 0
+Diacetyl_gamma = 0
+Acetoin_gamma = 0
+BDO_gamma = 0
+Acetylaldehyde_gamma = 0
+Acetate_gamma = 0
+Ethanol_gamma = 0
 
 #ode system setup, reactant and product concentrations input respectively
-y = range[26]
-y[0] = #[GlucoseGA3P]
-y[1] = #[GA3PDHAP]
-y[2] = #[DHAPG3P]
-y[3] = #[G3PGlycerol]
-y[4] = #[GA3PPyruvate]
-y[5] = #[PyruvateAlphaAcetolactate]
-y[6] = #[AlphaAcetolactateDiacetyl]
-y[7] = #[DiacetylAcetoin]
-y[8] = #[AcetoinBDO]
-y[9] = #[PyruvateAcetylaldehyde]
-y[10] = #[AcetylaldehydeAcetoin]
-y[11] = #[AcetylaldehydeAcetate]
-y[12] = #[AcetateEthanol]
+y = range(26)
+y[0] = 1e-05 #[GlucoseGA3P]
+y[1] = 1e-05#[GA3PDHAP]
+y[2] = 1e-05#[DHAPG3P]
+y[3] = 1e-05#[G3PGlycerol]
+y[4] = 1e-05#[GA3PPyruvate]
+y[5] = 1e-05#[PyruvateAlphaAcetolactate]
+y[6] = 1e-05#[AlphaAcetolactateDiacetyl]
+y[7] = 1e-05#[DiacetylAcetoin]
+y[8] = 1e-05#[AcetoinBDO]
+y[9] = 1e-05#[PyruvateAcetylaldehyde]
+y[10] = 1e-05#[AcetylaldehydeAcetoin]
+y[11] = 1e-05#[AcetylaldehydeAcetate]
+y[12] = 1e-05#[AcetateEthanol]
 #-------
-y[13] = #[Glucose]
-y[14] = #[GA3P]
-y[15] = #[DHAP]
-y[16] = #[G3P]
-y[17] = #[Glycerol]
-y[18] = #[Pyruvate]
-y[19] = #[AlphaAcetolactate]
-y[20] = #[Diacetyl]
-y[21] = #[Acetoin]
-y[22] = #[BDO]
-y[23] = #[Acetylaldehyde]
-y[24] = #[Acetate]
-y[25] = #[Ethanol]
+y[13] = 1e-05#[Glucose]
+y[14] = 1e-05#[GA3P]
+y[15] = 1e-05#[DHAP]
+y[16] = 1e-05#[G3P]
+y[17] = 1e-05#[Glycerol]
+y[18] = 1e-05#[Pyruvate]
+y[19] = 1e-05#[AlphaAcetolactate]
+y[20] = 1e-05#[Diacetyl]
+y[21] = 1e-05#[Acetoin]
+y[22] = 1e-05#[BDO]
+y[23] = 1e-05#[Acetylaldehyde]
+y[24] = 1e-05#[Acetate]
+y[25] = 1e-05#[Ethanol]
 
 
 #individual ordinary differential equations' definition
 
 def Glucose(t, y):
 	production = Glucose_vmax
-	degradation = Glucose_gamma * [Glucose]
-	usage = ([Glucose] * [GlucoseGA3P] * GlucoseGA3P_rate) / ([Glucose] + GlucoseGA3P_km)
+	degradation = Glucose_gamma * y[13]
+	usage = (y[13] * y[0] * GlucoseGA3P_rate) / (y[13] + GlucoseGA3P_km)
+	return production - degradation - usage
 	
 def GA3P(t, y):
-	production = ([Glucose] * [GlucoseGA3P] * GlucoseGA3P_rate) / ([Glucose] + GlucoseGA3P_km)
-	degradation = GA3P_gamma * [GA3P]
-	usage = (([GA3P] * [GA3PDHAP] * GA3PDHAP_rate) / ([GA3P] + GA3PDHAP_km)) + (([GA3P] * [GA3PPyruvate] * GA3PPyruvate_rate) / ([GA3P] * GA3PPyruvate_km))
+	production = (y[13] * y[0] * GlucoseGA3P_rate) / (y[13] + GlucoseGA3P_km)
+	degradation = GA3P_gamma * y[14]
+	usage = ((y[14] * y[1] * GA3PDHAP_rate) / (y[14] + GA3PDHAP_km)) + ((y[14] * y[4] * GA3PPyruvate_rate) / (y[14] * GA3PPyruvate_km))
+	return production - degradation - usage
+	
 	
 def DHAP(t, y):
-	production = ([GA3P] * [GA3PDHAP] * GA3PDHAP_rate) / ([GA3P] + GA3PDHAP_km)
-	degradation = [DHAP] * DHAP_gamma
-	usage = ([DHAP] * [DHAPG3P] * DHAPG3P_rate) / ([DHAP] + DHAPG3P_km)
+	production = (y[14] * y[1] * GA3PDHAP_rate) / (y[14] + GA3PDHAP_km)
+	degradation = y[15] * DHAP_gamma
+	usage = (y[15] * y[2] * DHAPG3P_rate) / (y[15] + DHAPG3P_km)
+	return production - degradation - usage
+	
 	
 def G3P(t, y):
-	production = ([DHAP] * [DHAPG3P] * DHAPG3P_rate) / ([DHAP] + DHAPG3P_km)
-	degradation = [G3P] * G3P_gamma
-	usage = ([G3P] * [G3PGlycerol] * G3PGlycerol_rate) / ([G3P] + G3PGlycerol_km)
+	production = (y[15] * y[2] * DHAPG3P_rate) / (y[15] + DHAPG3P_km)
+	degradation = y[16] * G3P_gamma
+	usage = (y[16] * y[3] * G3PGlycerol_rate) / (y[16] + G3PGlycerol_km)
+	return production - degradation - usage
+
 	
 def Glycerol(t, y):
-	production = ([G3P] * [G3PGlycerol] * G3PGlycerol_rate) / ([G3P] + G3PGlycerol_km)
-	degradation = [Glycerol] * Glycerol_gamma
+	production = (y[16] * y[3] * G3PGlycerol_rate) / (y[16] + G3PGlycerol_km)
+	degradation = y[17] * Glycerol_gamma
 	usage = 0
+	return production - degradation - usage
+	
 		
 #-----
 
 def Pyruvate(t, y):
-	production = ([GA3P] * [GA3PPyruvate] * GA3PPyruvate_rate) / ([GA3P] * GA3PPyruvate_km)
-	degradation = [Pyruvate] * Pyruvate_gamma
-	usage = (([Pyruvate] * [PyruvateAlphaAcetolactate] * PyruvateAlphaAcetolactate_rate)/([Pyruvate] + PyruvateAlphaAcetolactate_km)) + (([Pyruvate] * [PyruvateAcetylaldehyde] * PyruvateAcetylaldehyde_rate)/([Pyruvate] + PyruvateAcetylaldehyde_km))
+	production = (y[14] * y[4] * GA3PPyruvate_rate) / (y[14] * GA3PPyruvate_km)
+	degradation = y[18] * Pyruvate_gamma
+	usage = ((y[18] * y[5] * PyruvateAlphaAcetolactate_rate)/(y[18] + PyruvateAlphaAcetolactate_km)) + ((y[18] * y[9] * PyruvateAcetylaldehyde_rate)/(y[18] + PyruvateAcetylaldehyde_km))
+	return production - degradation - usage
+	
 	
 def AlphaAcetolactate(t, y):
-	production = ([Pyruvate] * [PyruvateAlphaAcetolactate] * PyruvateAlphaAcetolactate_rate)/([Pyruvate] + PyruvateAlphaAcetolactate_km)
-	degradation = [AlphaAcetolactate] * AlphaAcetolactate_gamma
-	usage = ([AlphaAcetolactate] * [AlphaAcetolactateDiacetyl] * AlphaAcetolactateDiacetyl_rate)/([AlphaAcetolactate] + AlphaAcetolactateDiacetyl_km)
+	production = (y[18] * y[5] * PyruvateAlphaAcetolactate_rate)/(y[18] + PyruvateAlphaAcetolactate_km)
+	degradation = y[19] * AlphaAcetolactate_gamma
+	usage = (y[19] * y[6] * AlphaAcetolactateDiacetyl_rate)/(y[19] + AlphaAcetolactateDiacetyl_km)
+	return production - degradation - usage
+	
 	
 def Diacetyl(t, y):
-	production = ([AlphaAcetolactate] * [AlphaAcetolactateDiacetyl] * AlphaAcetolactateDiacetyl_rate)/([AlphaAcetolactate] + AlphaAcetolactateDiacetyl_km)
-	degradation = [Diacetyl] * Diacetyl_gamma
-	usage = ([Diacetyl] * [DiacetylAcetoin] * DiacetylAcetoin_rate)/([Diacetyl] + DiacetylAcetoin_km)
+	production = (y[19] * y[6] * AlphaAcetolactateDiacetyl_rate)/(y[19] + AlphaAcetolactateDiacetyl_km)
+	degradation = y[20] * Diacetyl_gamma
+	usage = (y[20] * y[7] * DiacetylAcetoin_rate)/(y[20] + DiacetylAcetoin_km)
+	return production - degradation - usage
+	
 	
 def Acetoin(t, y):
-	production = (([Diacetyl] * [DiacetylAcetoin] * DiacetylAcetoin_rate)/([Diacetyl] + DiacetylAcetoin_km)) + (([Acetylaldehyde] * [AcetylaldehydeAcetoin] * AcetylaldehydeAcetoin_rate)/([Acetylaldehyde] + AcetylaldehydeAcetoin_km))
-	degradation = [Acetoin] * Acetoin_gamma
-	usage = ([Acetoin] * [AcetoinBDO] * AcetoinBDO_rate)/([Acetoin] + AcetoinBDO_km)
+	production = ((y[20] * y[7] * DiacetylAcetoin_rate)/(y[20] + DiacetylAcetoin_km)) + ((y[23] * y[10] * AcetylaldehydeAcetoin_rate)/(y[23] + AcetylaldehydeAcetoin_km))
+	degradation = y[21] * Acetoin_gamma
+	usage = (y[21] * y[8] * AcetoinBDO_rate)/(y[21] + AcetoinBDO_km)
+	return production - degradation - usage
+	
 	
 def BDO(t, y):
-	production = ([Acetoin] * [AcetoinBDO] * AcetoinBDO_rate)/([Acetoin] + AcetoinBDO_km)
-	degradation = [BDO] * BDO_gamma
+	production = (y[21] * y[8] * AcetoinBDO_rate)/(y[21] + AcetoinBDO_km)
+	degradation = y[22] * BDO_gamma
 	usage = 0
+	return production - degradation - usage
+	
 	
 def Acetylaldehyde(t, y):
-	production = ([Pyruvate] * [PyruvateAcetylaldehyde] * PyruvateAcetylaldehyde_rate)/([Pyruvate] + PyruvateAcetylaldehyde_km)
-	degradation = [Acetylaldehyde] * Acetylaldehyde_gamma
-	usage = (([Acetylaldehyde] * [AcetylaldehydeAcetoin] * AcetylaldehydeAcetoin_rate)/([Acetylaldehyde] + AcetylaldehydeAcetoin_km)) + (([Acetylaldehyde] * [AcetylaldehydeAcetate] * AcetylaldehydeAcetate_rate)/([Acetylaldehyde] + AcetylaldehydeAcetate_km))
+	production = (y[18] * y[9] * PyruvateAcetylaldehyde_rate)/(y[18] + PyruvateAcetylaldehyde_km)
+	degradation = y[23] * Acetylaldehyde_gamma
+	usage = ((y[23] * y[10] * AcetylaldehydeAcetoin_rate)/(y[23] + AcetylaldehydeAcetoin_km)) + ((y[23] * y[11] * AcetylaldehydeAcetate_rate)/(y[23] + AcetylaldehydeAcetate_km))
+	return production - degradation - usage
+	
 	
 def Acetate(t, y):
-	production = ([Acetylaldehyde] * [AcetylaldehydeAcetate] * AcetylaldehydeAcetate_rate)/([Acetylaldehyde] + AcetylaldehydeAcetate_km)
-	degradation = [Acetate] * Acetate_gamma
-	usage = ([Acetate] * [AcetateEthanol] * AcetateEthanol_rate)/([Acetate] + AcetateEthanol_km)
+	production = (y[23] * y[11] * AcetylaldehydeAcetate_rate)/(y[23] + AcetylaldehydeAcetate_km)
+	degradation = y[24] * Acetate_gamma
+	usage = (y[24] * y[12] * AcetateEthanol_rate)/(y[24] + AcetateEthanol_km)
+	return production - degradation - usage
+	
 	
 def Ethanol(t, y):
-	production = ([Acetate] * [AcetateEthanol] * AcetateEthanol_rate)/([Acetate] + AcetateEthanol_km)
-	degradation = [Ethanol] * Ethanol_gamma
+	production = (y[24] * y[12] * AcetateEthanol_rate)/(y[24] + AcetateEthanol_km)
+	degradation = y[25] * Ethanol_gamma
 	usage = 0
+	return production - degradation - usage
+	
 	
 #-----enzymes------
 
 def GlucoseGA3P(t, y):
 	production = GlucoseGA3P_vmax
-	degradation = GlucoseGA3P_gamma * [GlucoseGA3P]
+	degradation = GlucoseGA3P_gamma * y[0]
 	usage = 0
+	return production - degradation - usage
+	
 	
 def GA3PDHAP(t, y):
 	production = GA3PDHAP_vmax
-	degradation = GA3PDHAP_gamma * [GA3PDHAP]
+	degradation = GA3PDHAP_gamma * y[1]
 	usage = 0
+	return production - degradation - usage
+	
 	
 def DHAPG3P(t, y):
 	production = DHAPG3P_vmax
-	degradation = DHAPG3P_gamma * [DHAPG3P]
+	degradation = DHAPG3P_gamma * y[2]
 	usage = 0
+	return production - degradation - usage
+	
 	
 def G3PGlycerol(t, y):
 	production = G3PGlycerol_vmax
-	degradation = G3PGlycerol_gamma * [G3PGlycerol]
+	degradation = G3PGlycerol_gamma * y[3]
 	usage = 0
+	return production - degradation - usage
+	
 	
 def GA3PPyruvate(t, y):
 	production = GA3PPyruvate_vmax 
-	degradation = GA3PPyruvate_gamma * [GA3PPyruvate]
+	degradation = GA3PPyruvate_gamma * y[4]
 	usage = 0
+	return production - degradation - usage
+	
 	
 def PyruvateAlphaAcetolactate(t, y):
 	production = PyruvateAlphaAcetolactate_vmax
-	degradation = PyruvateAlphaAcetolactate_gamma * [PyruvateAlphaAcetolactate]
+	degradation = PyruvateAlphaAcetolactate_gamma * y[5]
 	usage = 0
+	return production - degradation - usage
+	
 	
 def AlphaAcetolactateDiacetyl(t, y):
 	production = AlphaAcetolactateDiacetyl_vmax
-	degradation = AlphaAcetolactateDiacetyl_gamma * [AlphaAcetolactateDiacetyl]
+	degradation = AlphaAcetolactateDiacetyl_gamma * y[6]
 	usage = 0
+	return production - degradation - usage
+	
 	
 def DiacetylAcetoin(t, y):
 	production = DiacetylAcetoin_vmax
-	degradation = DiacetylAcetoin_gamma * [DiacetylAcetoin]
+	degradation = DiacetylAcetoin_gamma * y[7]
 	usage = 0
+	return production - degradation - usage
+	
 	
 def AcetoinBDO(t, y):
 	production = AcetoinBDO_vmax
-	degradation = AcetoinBDO_gamma * [AcetoinBDO]
+	degradation = AcetoinBDO_gamma * y[8]
 	usage = 0
+	return production - degradation - usage
+	
 	
 def PyruvateAcetylaldehyde(t, y):
 	production = PyruvateAcetylaldehyde_vmax
-	degradation = PyruvateAcetylaldehyde_gamma * [PyruvateAcetylaldehyde]
+	degradation = PyruvateAcetylaldehyde_gamma * y[9]
 	usage = 0
+	return production - degradation - usage
+	
 	
 def AcetylaldehydeAcetoin(t, y):
 	production = AcetylaldehydeAcetoin_vmax
-	degradation =AcetylaldehydeAcetoin_gamma * [AcetylaldehydeAcetoin]
+	degradation =AcetylaldehydeAcetoin_gamma * y[10]
 	usage =0
+	return production - degradation - usage
+	
 	
 def AcetylaldehydeAcetate(t, y):
 	production = AcetylaldehydeAcetate_vmax
-	degradation = AcetylaldehydeAcetate_gamma * [AcetylaldehydeAcetate]
+	degradation = AcetylaldehydeAcetate_gamma * y[11]
 	usage = 0
+	return production - degradation - usage
+	
 	
 def AcetateEthanol(t, y):
 	production = AcetateEthanol_vmax
-	degradation = AcetateEthanol_gamma * [AcetateEthanol]
+	degradation = AcetateEthanol_gamma * y[12]
 	usage = 0
+	return production - degradation - usage
+	
 	
 #circuit ODE definitions
 
@@ -284,7 +335,7 @@ circuitODE[25] =  Ethanol
 #iteration setup
 
 t0 = 0.0
-tmax = 10000.0
+tmax = 3000.0
 dt = 0.1
 outfile = 'IntegratedSimulationResult.csv'
 f = open(outfile, 'w')
