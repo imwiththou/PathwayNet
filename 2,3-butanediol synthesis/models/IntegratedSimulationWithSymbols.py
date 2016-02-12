@@ -4,22 +4,22 @@ import ode
 GlucoseGA3P_vmax = 0
 GlucoseGA3P_gamma = 0
 GlucoseGA3P_rate = 31.4
-GlucoseGA3P_km = 0.269
+GlucoseGA3P_km = 4.4e-04 #confirmed
 
 GA3PDHAP_vmax = 0
 GA3PDHAP_gamma = 0
 GA3PDHAP_rate = 44
-GA3PDHAP_km = 0.029
+GA3PDHAP_km = 3e-04 #confirmed
 
 DHAPG3P_vmax = 0
 DHAPG3P_gamma = 0
 DHAPG3P_rate = 3.14
-DHAPG3P_km = 0.269
+DHAPG3P_km = 1.5e-04 #confirmed
 
 G3PGlycerol_vmax = 0
 G3PGlycerol_gamma = 0
 G3PGlycerol_rate = 3.14
-G3PGlycerol_km = 0.269
+G3PGlycerol_km = 5e-03 #confirmed
 
 GA3PPyruvate_vmax = 0
 GA3PPyruvate_gamma = 0
