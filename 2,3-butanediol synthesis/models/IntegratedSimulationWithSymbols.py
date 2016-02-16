@@ -23,13 +23,13 @@ G3PGlycerol_km = 5e-03 #confirmed
 
 GA3PPyruvate_vmax = 0
 GA3PPyruvate_gamma = 0
-GA3PPyruvate_rate = 3.14
-GA3PPyruvate_km = 0.269
+GA3PPyruvate_rate = 5.6
+GA3PPyruvate_km = 8.86e-02 #confirmed
 
-PyruvateAlphaAcetolactate_vmax = 0
+PyruvateAlphaAcetolactate_vmax = 7.5e-11 #confirmed
 PyruvateAlphaAcetolactate_gamma = 0
 PyruvateAlphaAcetolactate_rate = 3.14
-PyruvateAlphaAcetolactate_km = 0.269
+PyruvateAlphaAcetolactate_km = 6.33e-03 #confirmed
 
 AlphaAcetolactateDiacetyl_vmax = 0
 AlphaAcetolactateDiacetyl_gamma = 0
