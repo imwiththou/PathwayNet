@@ -3,12 +3,12 @@ import ode
 #enzyme initial condition setup
 GlucoseGA3P_vmax = 0
 GlucoseGA3P_gamma = 0
-GlucoseGA3P_rate = 3
+GlucoseGA3P_rate = 1.1
 GlucoseGA3P_km = 4.4e-04 #confirmed
 
 GA3PDHAP_vmax = 0
 GA3PDHAP_gamma = 0
-GA3PDHAP_rate = 44
+GA3PDHAP_rate = 4.4
 GA3PDHAP_km = 3e-04 #confirmed
 
 DHAPG3P_vmax = 0
@@ -126,14 +126,16 @@ def Glucose(t, y):
 def GA3P(t, y):
 	production = (y[13] * y[0] * GlucoseGA3P_rate) / (y[13] + GlucoseGA3P_km)
 	degradation = GA3P_gamma * y[14]
-	usage = ((y[14] * y[1] * GA3PDHAP_rate) / (y[14] + GA3PDHAP_km)) + ((y[14] * y[4] * GA3PPyruvate_rate) / (y[14] * GA3PPyruvate_km))
+	usage1 = 0# ((y[14] * y[1] * GA3PDHAP_rate) / (y[14] + GA3PDHAP_km)) 
+	usage2 = ((y[14] * y[4] * GA3PPyruvate_rate) / (y[14] * GA3PPyruvate_km))
+	usage = usage1 + usage2
 	return production - degradation - usage
 	
 	
 def DHAP(t, y):
 	production = (y[14] * y[1] * GA3PDHAP_rate) / (y[14] + GA3PDHAP_km)
 	degradation = y[15] * DHAP_gamma
-	usage = (y[15] * y[2] * DHAPG3P_rate) / (y[15] + DHAPG3P_km)
+	usage = 0# (y[15] * y[2] * DHAPG3P_rate) / (y[15] + DHAPG3P_km)
 	return production - degradation - usage
 	
 	
@@ -156,7 +158,7 @@ def Glycerol(t, y):
 def Pyruvate(t, y):
 	production = (y[14] * y[4] * GA3PPyruvate_rate) / (y[14] * GA3PPyruvate_km)
 	degradation = y[18] * Pyruvate_gamma
-	usage = ((y[18] * y[5] * PyruvateAlphaAcetolactate_rate)/(y[18] + PyruvateAlphaAcetolactate_km)) + ((y[18] * y[9] * PyruvateAcetylaldehyde_rate)/(y[18] + PyruvateAcetylaldehyde_km))
+	usage = 0#((y[18] * y[5] * PyruvateAlphaAcetolactate_rate)/(y[18] + PyruvateAlphaAcetolactate_km)) + ((y[18] * y[9] * PyruvateAcetylaldehyde_rate)/(y[18] + PyruvateAcetylaldehyde_km))
 	return production - degradation - usage
 	
 	
@@ -300,44 +302,44 @@ def AcetateEthanol(t, y):
 	degradation = AcetateEthanol_gamma * y[12]
 	usage = 0
 	return production - degradation - usage
-	
-	
-#circuit ODE definitions
+
+	#circuit ODE definitions
 
 circuitODE = range(26)
 circuitODE[0] =  GlucoseGA3P
-circuitODE[1] =  GA3PDHAP
-circuitODE[2] =  DHAPG3P
-circuitODE[3] =  G3PGlycerol
+#circuitODE[1] =  GA3PDHAP
+#circuitODE[2] =  DHAPG3P
+#circuitODE[3] =  G3PGlycerol
 circuitODE[4] =  GA3PPyruvate
-circuitODE[5] =  PyruvateAlphaAcetolactate
-circuitODE[6] =  AlphaAcetolactateDiacetyl
-circuitODE[7] =  DiacetylAcetoin
-circuitODE[8] =  AcetoinBDO
-circuitODE[9] =  PyruvateAcetylaldehyde
-circuitODE[10] =  AcetylaldehydeAcetoin
-circuitODE[11] =  AcetylaldehydeAcetate
-circuitODE[12] =  AcetateEthanol
+#circuitODE[5] =  PyruvateAlphaAcetolactate
+#circuitODE[6] =  AlphaAcetolactateDiacetyl
+#circuitODE[7] =  DiacetylAcetoin
+#circuitODE[8] =  AcetoinBDO
+#circuitODE[9] =  PyruvateAcetylaldehyde
+#circuitODE[10] =  AcetylaldehydeAcetoin
+#circuitODE[11] =  AcetylaldehydeAcetate
+#circuitODE[12] =  AcetateEthanol
 circuitODE[13] =  Glucose
 circuitODE[14] =  GA3P
-circuitODE[15] =  DHAP
-circuitODE[16] =  G3P
-circuitODE[17] =  Glycerol
+#circuitODE[15] =  DHAP
+#circuitODE[16] =  G3P
+#circuitODE[17] =  Glycerol
 circuitODE[18] =  Pyruvate
-circuitODE[19] =  AlphaAcetolactate
-circuitODE[20] =  Diacetyl
-circuitODE[21] =  Acetoin
-circuitODE[22] =  BDO
-circuitODE[23] =  Acetylaldehyde
-circuitODE[24] =  Acetate
-circuitODE[25] =  Ethanol
+#circuitODE[19] =  AlphaAcetolactate
+#circuitODE[20] =  Diacetyl
+#circuitODE[21] =  Acetoin
+#circuitODE[22] =  BDO
+#circuitODE[23] =  Acetylaldehyde
+#circuitODE[24] =  Acetate
+#circuitODE[25] =  Ethanol
+
 
 #iteration setup
 
 t0 = 0.0
 tmax = 500.0
 dt = 1
-outfile = 'IntegratedSimulationResult.csv'
+outfile = 'troubleshoot.csv'
 f = open(outfile, 'w')
 header = ['time', 'GlucoseGA3P', 'GA3PDHAP', 'DHAPG3P', 'G3PGlycerol', 'GA3PPyruvate', 'PyruvateAlphaAcetolactate', 'AlphaAcetolactateDiacetyl', 'DiacetylAcetoin', 'AcetoinBDO', 'PyruvateAcetylaldehyde', 'AcetylaldehydeAcetoin', 'AcetylaldehydeAcetate', 'AcetateEthanol', 'Glucose', 'GA3P', 'DHAP', 'G3P', 'Glycerol', 'Pyruvate', 'AlphaAcetolactate', 'Diacetyl', 'Acetoin', 'BDO', 'Acetylaldehyde', 'Acetate', 'Ethanol']
 f.write(','.join(header) + '\n')
