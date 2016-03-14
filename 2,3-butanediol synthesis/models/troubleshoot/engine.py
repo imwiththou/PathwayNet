@@ -126,8 +126,8 @@ def Glucose(t, y):
 def GA3P(t, y):
 	production = (y[13] * y[0] * GlucoseGA3P_rate) / (y[13] + GlucoseGA3P_km)
 	degradation = GA3P_gamma * y[14]
-	usage1 = 0# ((y[14] * y[1] * GA3PDHAP_rate) / (y[14] + GA3PDHAP_km)) 
-	usage2 = ((y[14] * y[4] * GA3PPyruvate_rate) / (y[14] * GA3PPyruvate_km))
+	usage1 = (y[14] * y[1] * GA3PDHAP_rate) / (y[14] + GA3PDHAP_km)
+	usage2 = 0 #((y[14] * y[4] * GA3PPyruvate_rate) / (y[14] + GA3PPyruvate_km))
 	usage = usage1 + usage2
 	return production - degradation - usage
 	
@@ -135,7 +135,7 @@ def GA3P(t, y):
 def DHAP(t, y):
 	production = (y[14] * y[1] * GA3PDHAP_rate) / (y[14] + GA3PDHAP_km)
 	degradation = y[15] * DHAP_gamma
-	usage = 0# (y[15] * y[2] * DHAPG3P_rate) / (y[15] + DHAPG3P_km)
+	usage = (y[15] * y[2] * DHAPG3P_rate) / (y[15] + DHAPG3P_km)
 	return production - degradation - usage
 	
 	
@@ -156,9 +156,11 @@ def Glycerol(t, y):
 #-----
 
 def Pyruvate(t, y):
-	production = (y[14] * y[4] * GA3PPyruvate_rate) / (y[14] * GA3PPyruvate_km)
+	production = 0 #(y[14] * y[4] * GA3PPyruvate_rate) / (y[14] + GA3PPyruvate_km)
 	degradation = y[18] * Pyruvate_gamma
-	usage = 0#((y[18] * y[5] * PyruvateAlphaAcetolactate_rate)/(y[18] + PyruvateAlphaAcetolactate_km)) + ((y[18] * y[9] * PyruvateAcetylaldehyde_rate)/(y[18] + PyruvateAcetylaldehyde_km))
+	usage1 = 0 #(y[18] * y[5] * PyruvateAlphaAcetolactate_rate)/(y[18] + PyruvateAlphaAcetolactate_km)
+	usage2 = 0 #(y[18] * y[9] * PyruvateAcetylaldehyde_rate)/(y[18] + PyruvateAcetylaldehyde_km)
+	usage = usage1 + usage2
 	return production - degradation - usage
 	
 	
@@ -307,10 +309,10 @@ def AcetateEthanol(t, y):
 
 circuitODE = range(26)
 circuitODE[0] =  GlucoseGA3P
-#circuitODE[1] =  GA3PDHAP
-#circuitODE[2] =  DHAPG3P
-#circuitODE[3] =  G3PGlycerol
-circuitODE[4] =  GA3PPyruvate
+circuitODE[1] =  GA3PDHAP
+circuitODE[2] =  DHAPG3P
+circuitODE[3] =  G3PGlycerol
+#circuitODE[4] =  GA3PPyruvate
 #circuitODE[5] =  PyruvateAlphaAcetolactate
 #circuitODE[6] =  AlphaAcetolactateDiacetyl
 #circuitODE[7] =  DiacetylAcetoin
@@ -321,10 +323,10 @@ circuitODE[4] =  GA3PPyruvate
 #circuitODE[12] =  AcetateEthanol
 circuitODE[13] =  Glucose
 circuitODE[14] =  GA3P
-#circuitODE[15] =  DHAP
-#circuitODE[16] =  G3P
-#circuitODE[17] =  Glycerol
-circuitODE[18] =  Pyruvate
+circuitODE[15] =  DHAP
+circuitODE[16] =  G3P
+circuitODE[17] =  Glycerol
+#circuitODE[18] =  Pyruvate
 #circuitODE[19] =  AlphaAcetolactate
 #circuitODE[20] =  Diacetyl
 #circuitODE[21] =  Acetoin
@@ -337,7 +339,7 @@ circuitODE[18] =  Pyruvate
 #iteration setup
 
 t0 = 0.0
-tmax = 500.0
+tmax = 1000.0
 dt = 1
 outfile = 'troubleshoot.csv'
 f = open(outfile, 'w')
