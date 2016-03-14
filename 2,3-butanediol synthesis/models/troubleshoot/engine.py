@@ -58,12 +58,12 @@ AcetylaldehydeAcetoin_km = 0.269
 
 AcetylaldehydeAcetate_vmax = 0
 AcetylaldehydeAcetate_gamma = 0
-AcetylaldehydeAcetate_rate = 200
+AcetylaldehydeAcetate_rate = 20
 AcetylaldehydeAcetate_km = 2e-04
 
 AcetateEthanol_vmax = 0
 AcetateEthanol_gamma = 0
-AcetateEthanol_rate = 170 #confirmed
+AcetateEthanol_rate = 17.0 #confirmed as 170 but the value is ridiculiously high
 AcetateEthanol_km = 4.5e-05 #confirmed
 
 #reactant initial condition setup
@@ -127,7 +127,7 @@ def GA3P(t, y):
 	production = (y[13] * y[0] * GlucoseGA3P_rate) / (y[13] + GlucoseGA3P_km)
 	degradation = GA3P_gamma * y[14]
 	usage1 = (y[14] * y[1] * GA3PDHAP_rate) / (y[14] + GA3PDHAP_km)
-	usage2 = 0 #((y[14] * y[4] * GA3PPyruvate_rate) / (y[14] + GA3PPyruvate_km))
+	usage2 = (y[14] * y[4] * GA3PPyruvate_rate) / (y[14] + GA3PPyruvate_km)
 	usage = usage1 + usage2
 	return production - degradation - usage
 	
@@ -156,10 +156,10 @@ def Glycerol(t, y):
 #-----
 
 def Pyruvate(t, y):
-	production = 0 #(y[14] * y[4] * GA3PPyruvate_rate) / (y[14] + GA3PPyruvate_km)
+	production = (y[14] * y[4] * GA3PPyruvate_rate) / (y[14] + GA3PPyruvate_km)
 	degradation = y[18] * Pyruvate_gamma
-	usage1 = 0 #(y[18] * y[5] * PyruvateAlphaAcetolactate_rate)/(y[18] + PyruvateAlphaAcetolactate_km)
-	usage2 = 0 #(y[18] * y[9] * PyruvateAcetylaldehyde_rate)/(y[18] + PyruvateAcetylaldehyde_km)
+	usage1 = (y[18] * y[5] * PyruvateAlphaAcetolactate_rate)/(y[18] + PyruvateAlphaAcetolactate_km)
+	usage2 = (y[18] * y[9] * PyruvateAcetylaldehyde_rate)/(y[18] + PyruvateAcetylaldehyde_km)
 	usage = usage1 + usage2
 	return production - degradation - usage
 	
@@ -179,7 +179,9 @@ def Diacetyl(t, y):
 	
 	
 def Acetoin(t, y):
-	production = ((y[20] * y[7] * DiacetylAcetoin_rate)/(y[20] + DiacetylAcetoin_km)) + ((y[23] * y[10] * AcetylaldehydeAcetoin_rate)/(y[23] + AcetylaldehydeAcetoin_km))
+	production1 = (y[20] * y[7] * DiacetylAcetoin_rate)/(y[20] + DiacetylAcetoin_km)
+	production2 = (y[23] * y[10] * AcetylaldehydeAcetoin_rate)/(y[23] + AcetylaldehydeAcetoin_km)
+	production = production1 + production2
 	degradation = y[21] * Acetoin_gamma
 	usage = (y[21] * y[8] * AcetoinBDO_rate)/(y[21] + AcetoinBDO_km)
 	return production - degradation - usage
@@ -195,7 +197,9 @@ def BDO(t, y):
 def Acetylaldehyde(t, y):
 	production = (y[18] * y[9] * PyruvateAcetylaldehyde_rate)/(y[18] + PyruvateAcetylaldehyde_km)
 	degradation = y[23] * Acetylaldehyde_gamma
-	usage = ((y[23] * y[10] * AcetylaldehydeAcetoin_rate)/(y[23] + AcetylaldehydeAcetoin_km)) + ((y[23] * y[11] * AcetylaldehydeAcetate_rate)/(y[23] + AcetylaldehydeAcetate_km))
+	usage1 = (y[23] * y[10] * AcetylaldehydeAcetoin_rate)/(y[23] + AcetylaldehydeAcetoin_km)
+	usage2 = (y[23] * y[11] * AcetylaldehydeAcetate_rate)/(y[23] + AcetylaldehydeAcetate_km)
+	usage = usage1 + usage2
 	return production - degradation - usage
 	
 	
@@ -312,34 +316,34 @@ circuitODE[0] =  GlucoseGA3P
 circuitODE[1] =  GA3PDHAP
 circuitODE[2] =  DHAPG3P
 circuitODE[3] =  G3PGlycerol
-#circuitODE[4] =  GA3PPyruvate
-#circuitODE[5] =  PyruvateAlphaAcetolactate
-#circuitODE[6] =  AlphaAcetolactateDiacetyl
-#circuitODE[7] =  DiacetylAcetoin
-#circuitODE[8] =  AcetoinBDO
-#circuitODE[9] =  PyruvateAcetylaldehyde
-#circuitODE[10] =  AcetylaldehydeAcetoin
-#circuitODE[11] =  AcetylaldehydeAcetate
-#circuitODE[12] =  AcetateEthanol
+circuitODE[4] =  GA3PPyruvate
+circuitODE[5] =  PyruvateAlphaAcetolactate
+circuitODE[6] =  AlphaAcetolactateDiacetyl
+circuitODE[7] =  DiacetylAcetoin
+circuitODE[8] =  AcetoinBDO
+circuitODE[9] =  PyruvateAcetylaldehyde
+circuitODE[10] =  AcetylaldehydeAcetoin
+circuitODE[11] =  AcetylaldehydeAcetate
+circuitODE[12] =  AcetateEthanol
 circuitODE[13] =  Glucose
 circuitODE[14] =  GA3P
 circuitODE[15] =  DHAP
 circuitODE[16] =  G3P
 circuitODE[17] =  Glycerol
-#circuitODE[18] =  Pyruvate
-#circuitODE[19] =  AlphaAcetolactate
-#circuitODE[20] =  Diacetyl
-#circuitODE[21] =  Acetoin
-#circuitODE[22] =  BDO
-#circuitODE[23] =  Acetylaldehyde
-#circuitODE[24] =  Acetate
-#circuitODE[25] =  Ethanol
+circuitODE[18] =  Pyruvate
+circuitODE[19] =  AlphaAcetolactate
+circuitODE[20] =  Diacetyl
+circuitODE[21] =  Acetoin
+circuitODE[22] =  BDO
+circuitODE[23] =  Acetylaldehyde
+circuitODE[24] =  Acetate
+circuitODE[25] =  Ethanol
 
 
 #iteration setup
 
 t0 = 0.0
-tmax = 1000.0
+tmax = 1500.0
 dt = 1
 outfile = 'troubleshoot.csv'
 f = open(outfile, 'w')
