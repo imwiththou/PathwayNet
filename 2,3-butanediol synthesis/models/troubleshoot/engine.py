@@ -100,7 +100,7 @@ y[10] = 1e-06#[AcetylaldehydeAcetoin]
 y[11] = 1e-06#[AcetylaldehydeAcetate]
 y[12] = 1e-06#[AcetateEthanol]
 #-------
-y[13] = 1e-03#[Glucose]
+y[13] = 1e-05#[Glucose]
 y[14] = 0#[GA3P]
 y[15] = 0#[DHAP]
 y[16] = 0#[G3P]
@@ -343,8 +343,8 @@ circuitODE[25] =  Ethanol
 #iteration setup
 
 t0 = 0.0
-tmax = 1500.0
-dt = 1
+tmax = 5000.0
+dt = 0.1
 outfile = 'troubleshoot.csv'
 f = open(outfile, 'w')
 header = ['time', 'GlucoseGA3P', 'GA3PDHAP', 'DHAPG3P', 'G3PGlycerol', 'GA3PPyruvate', 'PyruvateAlphaAcetolactate', 'AlphaAcetolactateDiacetyl', 'DiacetylAcetoin', 'AcetoinBDO', 'PyruvateAcetylaldehyde', 'AcetylaldehydeAcetoin', 'AcetylaldehydeAcetate', 'AcetateEthanol', 'Glucose', 'GA3P', 'DHAP', 'G3P', 'Glycerol', 'Pyruvate', 'AlphaAcetolactate', 'Diacetyl', 'Acetoin', 'BDO', 'Acetylaldehyde', 'Acetate', 'Ethanol']
